@@ -19,8 +19,8 @@
             <div class="col-md-4 mb-4">
                 <h5>Contact Us</h5>
                 <ul class="list-unstyled">
-                    <li><i class="fas fa-map-marker-alt"></i> 123 Job Street, City, Country</li>
-                    <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 9-10, Chittaranjan Avenue, Dhaka 1100</li>
+                    <li><i class="fas fa-phone"></i> +88 015-215 46883</li>
                     <li><i class="fas fa-envelope"></i> info@jobboard.com</li>
                 </ul>
             </div>
@@ -29,10 +29,12 @@
             <div class="col-md-3 mb-3">
                 <h5>Follow Us</h5>
                 <div class="social-icons">
-                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-                    <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/whhooami" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://x.com/NibirJoydhar" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/in/nibirjoydhar" target="_blank"><i
+                            class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/nibirjoydhar/" target="_blank"><i
+                            class="fab fa-instagram"></i></a>
                 </div>
             </div>
 
@@ -42,7 +44,7 @@
     <!-- Footer Bottom -->
     <div class="footer-bottom">
         <div class="container">
-            <p>&copy; 2023 Job Board. All Rights Reserved.</p>
+            <p>&copy; 2025 Job Board. All Rights Reserved.</p>
         </div>
     </div>
 </footer>

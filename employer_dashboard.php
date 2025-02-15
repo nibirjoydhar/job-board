@@ -7,6 +7,11 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'employer') {
 
 include('includes/db.php');
 
+$user_id = $_SESSION['user_id'];
+$profile_sql = "SELECT * FROM profiles WHERE user_id = '$user_id'";
+$profile_result = $conn->query($profile_sql);
+
+
 $employer_id = $_SESSION['user_id'];
 $sql = "SELECT jobs.*, COUNT(applications.id) AS application_count 
         FROM jobs 
@@ -29,6 +34,31 @@ $result = $conn->query($sql);
         <h1 class="text-center mb-4">Employer Dashboard</h1>
         <div class="row">
             <div class="col-md-8 mx-auto">
+
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h2 class="card-title">Your Profile</h2>
+                        <?php
+                        if ($profile_result->num_rows > 0) {
+                            $profile = $profile_result->fetch_assoc();
+                            echo "<p><strong>Skills:</strong> " . $profile['skills'] . "</p>";
+                            echo "<p><strong>Experience:</strong> " . $profile['experience'] . "</p>";
+                            if (!empty($profile['resume'])) {
+                                echo "<p><strong>Resume:</strong> <a href='" . $profile['resume'] . "' target='_blank'>Download Resume</a></p>";
+                            } else {
+                                echo "<p><strong>Resume:</strong> Not provided</p>";
+                            }
+                            ?>
+
+                        <a href="profile.php" class="btn btn-primary">Update Profile</a>
+                        <?php
+                        } else {
+                            echo "<p>No profile found. <a href='profile.php'>Create one now</a>.</p>";
+                        }
+                        ?>
+
+                    </div>
+                </div>
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <h2 class="card-title">Your Job Postings</h2>
