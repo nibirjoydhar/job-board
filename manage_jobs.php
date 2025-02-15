@@ -13,7 +13,7 @@ if (isset($_POST['action'])) {
     $action = $_POST['action'];
 
     if ($action === 'approve') {
-        $sql = "UPDATE jobs SET approved = 1 WHERE id = '$job_id'";
+        $sql = "UPDATE jobs SET status = 'approved' WHERE id = '$job_id'";
     } elseif ($action === 'delete') {
         $sql = "DELETE FROM jobs WHERE id = '$job_id'";
     }
@@ -65,6 +65,7 @@ $result = $conn->query($sql);
                                     <th>Employer</th>
                                     <th>Location</th>
                                     <th>Salary</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -78,6 +79,7 @@ $result = $conn->query($sql);
                                         echo "<td>" . $row['employer_name'] . "</td>";
                                         echo "<td>" . $row['location'] . "</td>";
                                         echo "<td>" . $row['salary'] . "</td>";
+                                        echo "<td>" . $row['status'] . "</td>";
                                         echo "<td>";
                                         echo "<form method='POST' action='manage_jobs.php' style='display:inline;'>";
                                         echo "<input type='hidden' name='job_id' value='" . $row['id'] . "'>";

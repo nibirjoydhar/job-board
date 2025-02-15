@@ -51,7 +51,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
                         href="profile.php"><?php echo $_SESSION['name']; ?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="logout.php">Logout</a>
+                    <a class="nav-link text-danger" href="logout.php">Logout</a>
                 </li>
                 <?php endif; ?>
             </ul>

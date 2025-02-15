@@ -25,15 +25,34 @@ if ($result->num_rows > 0) {
 <head>
     <title>Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    .profile-photo {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #ffc107;
+    }
+    </style>
 </head>
 
 <body class="bg-light">
+    <?php include('header.php'); ?>
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <h2 class="card-title text-center mb-4">Your Profile</h2>
+                        <!-- Profile Photo -->
+                        <div class="text-center mb-4">
+                            <?php if (!empty($profile['profile_photo'])): ?>
+                            <img src="<?php echo htmlspecialchars($profile['profile_photo']); ?>" alt="Profile Photo"
+                                class="profile-photo">
+                            <?php else: ?>
+                            <img src="images/default-profile.png" alt="Default Profile Photo" class="profile-photo">
+                            <?php endif; ?>
+                        </div>
                         <?php if ($profile): ?>
                         <div class="mb-3">
                             <h4>Skills</h4>

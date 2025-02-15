@@ -26,7 +26,7 @@ include('includes/db.php');
 <body class="bg-light">
     <?php include('header.php'); ?>
 
-    <div class="container mt-5">
+    <div class="container mt-5 mb-6">
         <h1 class="text-center mb-4">Admin Dashboard</h1>
         <div class="row">
             <div class="col-md-8 mx-auto">

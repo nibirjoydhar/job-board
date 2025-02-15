@@ -84,12 +84,6 @@ $result = $conn->query($sql);
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-11"></div>
-        <div class="col-md-1">
-            <a href='logout.php' class='btn btn-danger'>Logout</a>
-        </div>
-    </div>
 
 </body>
 
