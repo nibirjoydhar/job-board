@@ -15,12 +15,7 @@ if (isset($_POST['login'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['role'] = $user['role'];
             $_SESSION['name'] = $user['name'];
-
-
-            if ($user['role'] == 'job_seeker')
-                header("Location: dashboard.php");
-            else
-                header("Location: employer_dashboard.php");
+            header("Location: index.php");
         } else {
             echo "Invalid credentials.";
         }

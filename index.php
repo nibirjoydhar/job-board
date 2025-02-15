@@ -25,15 +25,16 @@ include('includes/db.php');
 
 <body class="bg-light">
     <?php include('header.php'); ?>
-    <!-- <div class="hero-section text-center mb-5">
-        <img src="images/hero.jpg" alt="Job Board Hero Image" class="img-fluid rounded">
-        <div class="hero-text">
-            <h1 class="display-4">Find Your Dream Job</h1>
-            <p class="lead">Join thousands of job seekers and employers on our platform.</p>
-        </div>
-        </div> -->
+
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Find Your Dream Job</h1>
+        <!-- <h1 class="text-center mb-4">Find Your Dream Job</h1> -->
+        <div class="hero-section text-center mb-5">
+            <img src="images/hero.jpg" alt="Job Board Hero Image" class="img-fluid rounded">
+            <div class="hero-text">
+                <h1 class="display-4">Find Your Dream Job</h1>
+                <p class="lead">Join thousands of job seekers and employers on our platform.</p>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <div class="input-group mb-3">
