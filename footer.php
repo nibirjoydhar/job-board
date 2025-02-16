@@ -1,3 +1,4 @@
+<div class="mt-5"></div>
 <footer>
     <div class="container">
         <div class="row">
@@ -9,7 +10,7 @@
                 <ul class="list-unstyled">
                     <li><a href="index.php">Home</a></li>
                     <li><a href="about.php">About Us</a></li>
-                    <li><a href="jobs.php">Job Listings</a></li>
+                    <li><a href="index.php">Job Listings</a></li>
                     <li><a href="contact.php">Contact Us</a></li>
                     <li><a href="privacy.php">Privacy Policy</a></li>
                 </ul>

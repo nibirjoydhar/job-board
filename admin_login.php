@@ -11,31 +11,52 @@ if (isset($_POST['login'])) {
 
     if ($result->num_rows === 1) {
         $user = $result->fetch_assoc();
+
         if (password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['role'] = $user['role'];
             header("Location: admin_dashboard.php");
         } else {
-            echo "<div class='alert alert-danger'>Invalid credentials.</div>";
+            echo "<script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Invalid credentials',
+                        text: 'The password you entered is incorrect.',
+                        showConfirmButton: true
+                    });
+                  </script>";
         }
     } else {
-        echo "<div class='alert alert-danger'>No admin found with this email.</div>";
+        echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'No admin found',
+                    text: 'No admin found with this email address.',
+                    showConfirmButton: true
+                });
+              </script>";
     }
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
 </head>
 
 <body class="bg-light">
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="card shadow-sm">
+                <div class="card shadow-lg">
                     <div class="card-body">
                         <h2 class="card-title text-center mb-4">Admin Login</h2>
                         <form method="POST" action="admin_login.php">
@@ -53,6 +74,34 @@ if (isset($_POST['login'])) {
             </div>
         </div>
     </div>
+
+    <!-- Toast Notification for Successful Login -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <script>
+    <?php if ($result->num_rows === 0): ?>
+    Swal.fire({
+        icon: 'error',
+        title: 'No admin found',
+        text: 'No admin found with this email address.',
+        showConfirmButton: true
+    });
+    <?php endif; ?>
+    </script>
+
+    <script>
+    <?php if (isset($_SESSION['user_id'])): ?>
+    Toastify({
+        text: "Welcome, Admin!",
+        duration: 3000,
+        close: true,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "green",
+    }).showToast();
+    <?php endif; ?>
+    </script>
 </body>
 
 </html>

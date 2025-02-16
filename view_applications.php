@@ -66,8 +66,8 @@ if (isset($_GET['job_id'])) {
                                 echo "<div class='mb-4'>";
                                 echo "<p><strong>Applicant:</strong> " . $row['applicant_name'] . "</p>";
                                 echo "<p><strong>Applied At:</strong> " . $row['applied_at'] . "</p>";
-                                if (!empty($row['resume'])) {
-                                    echo "<p><strong>Resume:</strong> <a href='" . $row['resume'] . "' target='_blank'>Download Resume</a></p>";
+                                if (!empty($row['cv'])) {
+                                    echo "<p><strong>Resume:</strong> <a href='" . $row['cv'] . "' target='_blank'>Download Resume</a></p>";
                                 } else {
                                     echo "<p><strong>Resume:</strong> Not provided</p>";
                                 }

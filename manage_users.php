@@ -13,7 +13,9 @@ if (isset($_POST['action'])) {
     $action = $_POST['action'];
 
     if ($action === 'deactivate') {
-        $sql = "UPDATE users SET active = 0 WHERE id = '$user_id'";
+        $sql = "UPDATE users SET status = 'deactive' WHERE id = '$user_id'";
+    } else if ($action === 'activate') {
+        $sql = "UPDATE users SET status = 'active' WHERE id = '$user_id'";
     } elseif ($action === 'delete') {
         $sql = "DELETE FROM users WHERE id = '$user_id'";
     }
@@ -62,6 +64,7 @@ $result = $conn->query($sql);
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Role</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -69,15 +72,18 @@ $result = $conn->query($sql);
                                 <?php
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
+                                        $action = ($row['status'] == 'active') ? 'deactivate' : 'activate';
+
                                         echo "<tr>";
                                         echo "<td>" . $row['id'] . "</td>";
                                         echo "<td>" . $row['name'] . "</td>";
                                         echo "<td>" . $row['email'] . "</td>";
                                         echo "<td>" . $row['role'] . "</td>";
+                                        echo "<td>" . $row['status'] . "</td>";
                                         echo "<td>";
                                         echo "<form method='POST' action='manage_users.php' style='display:inline;'>";
                                         echo "<input type='hidden' name='user_id' value='" . $row['id'] . "'>";
-                                        echo "<button type='submit' name='action' value='deactivate' class='btn btn-warning btn-sm'>Deactivate</button>";
+                                        echo "<button type='submit' name='action' value=$action class='btn btn-warning btn-sm'>$action</button>";
                                         echo "<button type='submit' name='action' value='delete' class='btn btn-danger btn-sm ms-2'>Delete</button>";
                                         echo "</form>";
                                         echo "</td>";

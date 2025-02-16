@@ -6,16 +6,23 @@ if (isset($_POST['login'])) {
     $email = $conn->real_escape_string($_POST['email']);
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM users WHERE email = '$email'";
+    $sql = "SELECT * FROM users WHERE email = '$email' and role!='admin'";
     $result = $conn->query($sql);
 
     if ($result->num_rows === 1) {
         $user = $result->fetch_assoc();
         if (password_verify($password, $user['password'])) {
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['role'] = $user['role'];
-            $_SESSION['name'] = $user['name'];
-            header("Location: index.php");
+            $_SESSION['status'] = $user['status'];
+            if ($_SESSION['status'] == 'active') {
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['role'] = $user['role'];
+                $_SESSION['name'] = $user['name'];
+
+                header("Location: index.php");
+            } else {
+                header("Location: deactive.php");
+            }
+
         } else {
             echo "Invalid credentials.";
         }

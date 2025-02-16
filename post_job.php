@@ -56,7 +56,7 @@ if (isset($_POST['post_job'])) {
                             <button type="submit" name="post_job" class="btn btn-primary w-100">Post Job</button>
                         </form>
                         <div class="text-center mt-3">
-                            <a href="dashboard.php" class="btn btn-secondary">Back to Dashboard</a>
+                            <a href="employer_dashboard.php" class="btn btn-secondary">Back to Dashboard</a>
                         </div>
                     </div>
                 </div>

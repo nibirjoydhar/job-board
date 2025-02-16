@@ -1,7 +1,7 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 
 include('includes/db.php');
 
@@ -19,7 +19,8 @@ if (isset($_POST['register'])) {
         $sql = "INSERT INTO users (name, email, password, role) VALUES ('$name', '$email', '$password', '$role')";
 
         if ($conn->query($sql) === TRUE) {
-            echo "Registration successful. <a href='login.php'>Login here</a>";
+            echo "Registration successful. <br> Redirecting to login page...";
+            header("Refresh: 2; url=login.php");
         } else {
             echo "Error: " . $conn->error;
         }

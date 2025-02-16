@@ -1,4 +1,6 @@
 <?php
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 session_start();
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'job_seeker') {
     header("Location: login.php");
@@ -7,9 +9,19 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'job_seeker') {
 
 include('includes/db.php');
 
+// Fetch job seeker profile
+$user_id = $_SESSION['user_id'];
+$profile_sql = "SELECT * FROM profiles WHERE user_id = '$user_id'";
+$profile_result = $conn->query($profile_sql);
+if ($profile_result->num_rows > 0) {
+    $profile = $profile_result->fetch_assoc();
+}
+
 if (isset($_GET['job_id'])) {
     $job_id = $conn->real_escape_string($_GET['job_id']);
     $user_id = $_SESSION['user_id'];
+    // echo "Job id: " . $job_id . "<br>";
+    // echo "User id: " . $user_id . "<br>";
 
     // Check if the user has already applied for this job
     $check_sql = "SELECT * FROM applications WHERE job_id = '$job_id' AND user_id = '$user_id'";
@@ -17,47 +29,45 @@ if (isset($_GET['job_id'])) {
 
     if ($check_result->num_rows > 0) {
         echo "<div class='alert alert-warning'>You have already applied for this job.</div>";
+        header("Refresh: 2; url=index.php");
+
     } else {
         // Handle resume upload
-        if (isset($_FILES['resume']) && $_FILES['resume']['error'] === UPLOAD_ERR_OK) {
-            $upload_dir = 'uploads/resumes/';
-            if (!is_dir($upload_dir)) {
-                mkdir($upload_dir, 0777, true);
-            }
 
-            // Validate file type (only PDF allowed)
-            $allowed_types = ['application/pdf'];
-            $file_type = $_FILES['resume']['type'];
-            if (!in_array($file_type, $allowed_types)) {
-                echo "<div class='alert alert-danger'>Only PDF files are allowed.</div>";
-                exit();
-            }
+        if (!empty($profile['cv'])) {
+            $sql = "INSERT INTO applications (job_id, user_id, cv) VALUES ('$job_id', '$user_id', '" . $profile['cv'] . "')";
+            // echo $sql;
+            if ($conn->query($sql)) {
+                echo "<div class='alert alert-success'>Application submitted successfully!</div>";
+                header("Refresh: 2; url=index.php");
 
-            // Validate file size (max 5MB)
-            $max_size = 5 * 1024 * 1024; // 5MB
-            if ($_FILES['resume']['size'] > $max_size) {
-                echo "<div class='alert alert-danger'>File size must be less than 5MB.</div>";
-                exit();
-            }
-
-            // Generate a unique file name to avoid conflicts
-            $file_name = uniqid() . '_' . basename($_FILES['resume']['name']);
-            $file_path = $upload_dir . $file_name;
-
-            // Move the uploaded file to the uploads directory
-            if (move_uploaded_file($_FILES['resume']['tmp_name'], $file_path)) {
-                // Insert the application into the database
-                $sql = "INSERT INTO applications (job_id, user_id, resume) VALUES ('$job_id', '$user_id', '$file_path')";
-                if ($conn->query($sql)) {
-                    echo "<div class='alert alert-success'>Application submitted successfully!</div>";
-                } else {
-                    echo "<div class='alert alert-danger'>Error: " . $conn->error . "</div>";
-                }
             } else {
-                echo "<div class='alert alert-danger'>Error uploading resume. Please try again.</div>";
+                echo "<div class='alert alert-danger'>Error: " . $conn->error . "</div>";
             }
         } else {
-            echo "<div class='alert alert-danger'>Please upload a resume.</div>";
+
+            if (isset($_FILES['cv']) && $_FILES['cv']['error'] === UPLOAD_ERR_OK) {
+                $cv_dir = 'uploads/cvs/';
+                $cvName = time() . "_" . basename($_FILES["cv"]["name"]);
+                $cvPath = $cv_dir . $cvName;
+                $cvType = strtolower(pathinfo($cvPath, PATHINFO_EXTENSION));
+                if ($cvType != "pdf") {
+                    echo "<div class='alert alert-danger'>Only PDF files are allowed for CV upload!</div>";
+                } elseif (move_uploaded_file($_FILES["cv"]["tmp_name"], $cvPath)) {
+
+                    $sql = "INSERT INTO applications (job_id, user_id, cv) VALUES ('$job_id', '$user_id', '$cvPath')";
+                    if ($conn->query($sql)) {
+                        echo "<div class='alert alert-success'>Application submitted successfully!</div>";
+                        header("Refresh: 2; url=index.php");
+                    } else {
+                        echo "<div class='alert alert-danger'>Error: " . $conn->error . "</div>";
+                    }
+                } else {
+                    echo "<div class='alert alert-danger'>CV upload failed!</div>";
+                }
+            } else {
+                echo "<div class='alert alert-danger'>Please upload a resume.</div>";
+            }
         }
     }
 } else {
@@ -82,8 +92,8 @@ if (isset($_GET['job_id'])) {
                         <form method="POST" action="apply_job.php?job_id=<?php echo $job_id; ?>"
                             enctype="multipart/form-data">
                             <div class="mb-3">
-                                <label for="resume" class="form-label">Upload Resume (PDF only)</label>
-                                <input type="file" name="resume" class="form-control" accept="application/pdf" required>
+                                <label for="cv" class="form-label">Upload Resume (PDF only)</label>
+                                <input type="file" name="cv" class="form-control" accept="application/pdf" required>
                             </div>
                             <button type="submit" class="btn btn-success w-100">Submit Application</button>
                         </form>

@@ -28,7 +28,7 @@ $applied_jobs_result = $conn->query($applied_jobs_sql);
 </head>
 
 <body class="bg-light">
-    <?php include('header.php');?>
+    <?php include('header.php'); ?>
 
     <div class="container mt-5">
         <h1 class="text-center mb-4">Job Seeker Dashboard</h1>
@@ -42,17 +42,17 @@ $applied_jobs_result = $conn->query($applied_jobs_sql);
                             $profile = $profile_result->fetch_assoc();
                             echo "<p><strong>Skills:</strong> " . $profile['skills'] . "</p>";
                             echo "<p><strong>Experience:</strong> " . $profile['experience'] . "</p>";
-                            if (!empty($profile['resume'])) {
-                                echo "<p><strong>Resume:</strong> <a href='" . $profile['resume'] . "' target='_blank'>Download Resume</a></p>";
+                            if (!empty($profile['cv'])) {
+                                echo "<p><strong>Resume:</strong> <a href='" . $profile['cv'] . "' target='_blank'>Download Resume</a></p>";
                             } else {
                                 echo "<p><strong>Resume:</strong> Not provided</p>";
                             }
                         } else {
-                            echo "<p>No profile found. <a href='profile.php'>Create one now</a>.</p>";
+                            echo "<p>No profile found. <a href='create_profile.php'>Create one now</a>.</p>";
                         }
                         ?>
                         <div class="text-center mt-3">
-                            <a href="profile.php" class="btn btn-primary">Update Profile</a>
+                            <a href="update_profile.php" class="btn btn-primary">Update Profile</a>
                         </div>
                     </div>
                 </div>
