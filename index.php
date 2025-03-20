@@ -1,54 +1,26 @@
 <?php
 session_start();
-if(!isset($_SESSION['role'])){
+if (!isset($_SESSION['role'])) {
     $_SESSION['role'] = 'guest';
-
 }
-// if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'job_seeker') {
-//     header("Location: login.php");
-//     exit();
-// }
-
-
 
 include('includes/db.php');
-
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>Job Board</title>
-    <?php include('headlink.php');?>
+    <?php include('headlink.php'); ?>
 </head>
 
 <body class="bg-light">
-    <?php include('header.php');?>
+    <?php include('header.php'); ?>
 
     <!-- Toast Notification -->
-    <?php 
-        $previous_page = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'No previous page';
-        $login_page="http://localhost/job-board-main/login.php";
-
-        if ($previous_page==$login_page && isset($_SESSION['name'])): 
-            $message = "Welcome back, " . $_SESSION['name'] . "!";
-            $message_type = 'success'; // Success toast
-        // ?>
-           
-        <div class="toast-container position-fixed top-0 end-0 p-3">
-            <div class="toast align-items-center text-white bg-<?php echo $message_type; ?> border-0" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="d-flex">
-                    <div class="toast-body">
-                        <?php echo $message; ?>
-                    </div>
-                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-            </div>
-        </div>
-    <?php endif; ?>
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1050;"></div>
 
     <div class="container mt-5">
-        <!-- <h1 class="text-center mb-4">Find Your Dream Job</h1> -->
         <div class="hero-section text-center mb-5">
             <img src="images/hero.jpg" alt="Job Board Hero Image" class="img-fluid rounded">
             <div class="hero-text">
@@ -67,10 +39,7 @@ include('includes/db.php');
         </div>
         <div class="row" id="job-listings">
             <?php
-            include('includes/db.php');
-            $sql = "SELECT jobs.*, users.name AS employer_name 
-                    FROM jobs 
-                    JOIN users ON jobs.employer_id = users.id";
+            $sql = "SELECT jobs.*, users.name AS employer_name FROM jobs JOIN users ON jobs.employer_id = users.id";
             $result = $conn->query($sql);
             $disabled = ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'employer') ? "disabled" : "";
             if ($result->num_rows > 0) {
@@ -81,49 +50,94 @@ include('includes/db.php');
                     echo "<h5 class='card-title'>" . $row['title'] . "</h5>";
                     echo "<p class='card-text'>" . $row['description'] . "</p>";
                     echo "<p class='card-text'><strong>Posted by:</strong> " . $row['employer_name'] . "</p>";
-                    echo "<a href='view_job.php?job_id=" . $row['id']
-                        . "' class='btn btn-success m-3 animate__animated animate__pulse animate__infinite'>View Details</a>";
-                    echo "<a href='apply_job.php?job_id=" . $row['id']
-                        . "' class='btn btn-success animate__animated animate__pulse animate__infinite $disabled'>Apply Now</a>";
-                    echo "</div>";
-                    echo "</div>";
-                    echo "</div>";
+                    echo "<a href='view_job.php?job_id=" . $row['id'] . "' class='btn btn-success m-3'>View Details</a>";
+                    echo "<button class='apply-btn btn btn-success m-3 animate__animated animate__pulse animate__infinite' data-job-id='" . $row['id'] . "'>Apply Now</button>";
+                    echo "</div></div></div>";
                 }
             } else {
-                echo "<div class='col-12 text-center'>";
-                echo "<p>No jobs posted yet.</p>";
-                echo "</div>"
-                ;
-            } ?>
+                echo "<div class='col-12 text-center'><p>No jobs posted yet.</p></div>";
+            }
+            ?>
         </div>
     </div>
 
     <?php include('footer.php'); ?>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-    function searchJobs() {
-        const query = $('#search').val();
+    $(document).ready(function() {
+
+        function searchJobs() {
+            const query = $('#search').val();
+            $.ajax({
+                url: 'search_jobs.php',
+                type: 'GET',
+                data: {
+                    query: query
+                },
+                success: function(response) {
+                    $('#job-listings').html(response);
+                }
+            });
+        }
+
+    });
+    $(document).on("click", ".apply-btn", function() {
+        var button = $(this);
+        var jobId = button.data("job-id");
+
+        // Disable button and show loading text
+        button.prop("disabled", true);
+        button.html(`<span class="spinner-border spinner-border-sm"></span> Applying...`);
         $.ajax({
-            url: 'search_jobs.php',
-            type: 'GET',
+            url: "apply_job.php",
+            type: "GET",
             data: {
-                query: query
+                job_id: jobId
             },
+            dataType: "json",
             success: function(response) {
-                $('#job-listings').html(response);
+                var toastType = response.status === "success" ? "bg-success" :
+                    response.status === "warning" ? "bg-warning" : "bg-danger";
+                showToast(response.message, toastType);
+            },
+            error: function() {
+                showToast("Something went wrong!", "bg-danger");
+            },
+            complete: function() {
+                // Restore button state after request completes
+                button.prop("disabled", false);
+                button.html("Apply Now");
             }
         });
-    }
-    
-        // Initialize toast if a message exists
-        <?php if ($message): ?>
-            var toast = new bootstrap.Toast(document.querySelector('.toast'));
-            toast.show();
-        <?php endif; ?>
 
+        function showToast(message, type) {
+            var toastContainer = $(".toast-container");
+
+            // Remove any existing toast before adding a new one
+            toastContainer.html('');
+
+            var toastHTML = `
+                <div id="custom-toast" class="toast align-items-center text-white ${type} border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
+                    <div class="d-flex">
+                        <div class="toast-body">${message}</div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                    </div>
+                </div>`;
+
+            toastContainer.html(toastHTML);
+
+            var toastElement = document.getElementById("custom-toast");
+            var toastInstance = new bootstrap.Toast(toastElement);
+            toastInstance.show();
+
+            setTimeout(function() {
+                $(toastElement).toast('hide'); // Bootstrap method to hide toast
+            }, 3000);
+        }
+    });
     </script>
+
 </body>
 
 </html>

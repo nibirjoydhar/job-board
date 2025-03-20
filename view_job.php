@@ -32,11 +32,14 @@ if (isset($_GET['job_id'])) {
 
 <head>
     <title>Job Details</title>
-    <?php include('headlink.php');?>
+    <?php include('headlink.php'); ?>
 </head>
 
 <body class="bg-light">
     <?php include('header.php'); ?>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1050;"></div>
 
     <div class="container mt-5">
         <div class="row justify-content-center">
@@ -52,21 +55,80 @@ if (isset($_GET['job_id'])) {
                         <p><?php echo nl2br(htmlspecialchars($job['requirements'])); ?></p>
                         <p><strong>Responsibilities:</strong></p>
                         <p><?php echo nl2br(htmlspecialchars($job['responsibilities'])); ?></p>
-                        <p><strong>Posted By:</strong> <?php echo htmlspecialchars($job['employer_name']); ?></p> <!-- Display employer name -->
+                        <p><strong>Posted By:</strong> <?php echo htmlspecialchars($job['employer_name']); ?></p>
 
                         <!-- Apply Now Button -->
-                        <form method="POST" action="apply_job.php">
-                            <input type="hidden" name="job_id" value="<?php echo $job['id']; ?>">
-                           <?php 
-                                $disabled = ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'employer') ? "disabled" : "";
-                                echo "<a href='apply_job.php?job_id=" . $job['id']
-                            . "' class='btn btn-success animate__animated animate__pulse animate__infinite $disabled'>Apply Now</a>"; ?>                       </form>
+                        <button class="apply-btn btn btn-success m-3 animate__animated animate__pulse animate__infinite"
+                            data-job-id="<?php echo $job['id']; ?>">
+                            Apply Now
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <?php include('footer.php'); ?>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+    $(document).on("click", ".apply-btn", function() {
+        var button = $(this);
+        var jobId = button.data("job-id");
+
+        // Disable button and show loading text
+        button.prop("disabled", true);
+        button.html(`<span class="spinner-border spinner-border-sm"></span> Applying...`);
+        $.ajax({
+            url: "apply_job.php",
+            type: "GET",
+            data: {
+                job_id: jobId
+            },
+            dataType: "json",
+            success: function(response) {
+                var toastType = response.status === "success" ? "bg-success" :
+                    response.status === "warning" ? "bg-warning" : "bg-danger";
+                showToast(response.message, toastType);
+            },
+            error: function() {
+                showToast("Something went wrong!", "bg-danger");
+            },
+            complete: function() {
+                // Restore button state after request completes
+                button.prop("disabled", false);
+                button.html("Apply Now");
+            }
+        });
+
+        function showToast(message, type) {
+            var toastContainer = $(".toast-container");
+
+            // Remove any existing toast before adding a new one
+            toastContainer.html('');
+
+            var toastHTML = `
+                <div id="custom-toast" class="toast align-items-center text-white ${type} border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
+                    <div class="d-flex">
+                        <div class="toast-body">${message}</div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                    </div>
+                </div>`;
+
+            toastContainer.html(toastHTML);
+
+            var toastElement = document.getElementById("custom-toast");
+            var toastInstance = new bootstrap.Toast(toastElement);
+            toastInstance.show();
+
+            setTimeout(function() {
+                $(toastElement).toast('hide'); // Bootstrap method to hide toast
+            }, 3000);
+        }
+    });
+    </script>
 
 </body>
 
