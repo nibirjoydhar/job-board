@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 21, 2025 at 11:15 AM
+-- Generation Time: Mar 21, 2025 at 12:52 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -135,22 +135,25 @@ CREATE TABLE `users` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` enum('active','inactive') NOT NULL DEFAULT 'active',
   `is_verified` tinyint(1) DEFAULT 0,
-  `verification_code` varchar(255) DEFAULT NULL
+  `verification_code` varchar(255) DEFAULT NULL,
+  `reset_token` varchar(255) DEFAULT NULL,
+  `reset_expires` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `created_at`, `status`, `is_verified`, `verification_code`) VALUES
-(2, 'nibir', 'nibir@gmail.com', '$2y$10$CH.uQJdYZYNw6P9xH2MvYOJcOHTn4OLbnB0f2fbrBe/jJH2neisgq', 'admin', '2025-03-19 17:41:37', 'active', 0, NULL),
-(4, 'Nibir Joydhar', 'nibirjoydhar@gmail.com', '$2y$10$ioFqqqKy.lBedi0hTsC76OVxNS8MKyhK/VOKv06gyZqKPTmpi70qC', 'employer', '2025-03-19 18:00:56', 'active', 1, NULL),
-(5, 'Hemel Ahmed', 'ahmedhemel889@gmail.com', '$2y$10$GVu/6jTC0z1cKitDFmT9oOeh6.dx/PTTIhW3lXjcq8WZ9eodHXbDK', 'job_seeker', '2025-03-19 21:58:20', 'active', 0, NULL),
-(7, 'Shima Hasan', 'shima@gmail.com', '$2y$10$o3roolkKYHGzrcBAMLGwk.8zK1leJwqqboJTQKey1nVZEOiWTu9.u', 'job_seeker', '2025-03-20 08:27:13', 'active', 0, NULL),
-(8, 'Hemel ', 'hemelahmed092@gmail.com', '$2y$10$G6vBDT2XxHfZ0zdTGSvuM.Dvyp6V0wG7L.Wsx5hEvVmyVt24izp0y', 'employer', '2025-03-20 08:59:14', 'active', 0, NULL),
-(11, 'Joydhar', 'joydhar@gmail.com', '$2y$10$7TV.wHgGM/4GUZwjp90EwO0AZzavdCGAZgVpCnqKRim0TKiHel/Rq', 'job_seeker', '2025-03-20 11:02:48', 'active', 0, NULL),
-(13, 'hi', 'hi@gmail.com', '$2y$10$2NOkqz/AD1Gq6XgcYBkLPOKoxgjOZ674Nu0D9NVQonZpnlGO1DNfG', 'employer', '2025-03-20 11:28:11', 'active', 0, NULL),
-(21, 'Nibir Joydhar', 'nibirjoydharnj@gmail.com', '$2y$10$GYa5ecGQO8ae9WYybDiDfeyEvUU7bENjGfhfW9kQiL3jmW55Fyhwe', 'employer', '2025-03-21 02:05:48', 'active', 1, '25487e6fee7f8dfc5639887af082a7df');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `created_at`, `status`, `is_verified`, `verification_code`, `reset_token`, `reset_expires`) VALUES
+(2, 'nibir', 'nibir@gmail.com', '$2y$10$CH.uQJdYZYNw6P9xH2MvYOJcOHTn4OLbnB0f2fbrBe/jJH2neisgq', 'admin', '2025-03-19 17:41:37', 'active', 0, NULL, NULL, NULL),
+(4, 'Nibir Joydhar', 'nibirjoydhar@gmail.com', '$2y$10$ioFqqqKy.lBedi0hTsC76OVxNS8MKyhK/VOKv06gyZqKPTmpi70qC', 'employer', '2025-03-19 18:00:56', 'active', 1, NULL, NULL, NULL),
+(5, 'Hemel Ahmed', 'ahmedhemel889@gmail.com', '$2y$10$GVu/6jTC0z1cKitDFmT9oOeh6.dx/PTTIhW3lXjcq8WZ9eodHXbDK', 'job_seeker', '2025-03-19 21:58:20', 'active', 0, NULL, NULL, NULL),
+(7, 'Shima Hasan', 'shima@gmail.com', '$2y$10$o3roolkKYHGzrcBAMLGwk.8zK1leJwqqboJTQKey1nVZEOiWTu9.u', 'job_seeker', '2025-03-20 08:27:13', 'active', 0, NULL, NULL, NULL),
+(8, 'Hemel ', 'hemelahmed092@gmail.com', '$2y$10$G6vBDT2XxHfZ0zdTGSvuM.Dvyp6V0wG7L.Wsx5hEvVmyVt24izp0y', 'employer', '2025-03-20 08:59:14', 'active', 0, NULL, NULL, NULL),
+(11, 'Joydhar', 'joydhar@gmail.com', '$2y$10$7TV.wHgGM/4GUZwjp90EwO0AZzavdCGAZgVpCnqKRim0TKiHel/Rq', 'job_seeker', '2025-03-20 11:02:48', 'active', 0, NULL, 'af0331e15b448dfbe25d54ffa4c0a7f1be3f8908e424f5d42923e5228139500adc5dea63d59b59729d65b56471f4bb27646b', '2025-03-21 18:37:16'),
+(13, 'hi', 'hi@gmail.com', '$2y$10$2NOkqz/AD1Gq6XgcYBkLPOKoxgjOZ674Nu0D9NVQonZpnlGO1DNfG', 'employer', '2025-03-20 11:28:11', 'active', 0, NULL, NULL, NULL),
+(21, 'Nibir Joydhar', 'nibirjoydharnj@gmail.com', '$2y$10$7OjkRfdNznJ2I24VXbxLC.lKZrzWr3VepVmvh2yZdI/KfPIVW.htO', 'employer', '2025-03-21 02:05:48', 'active', 1, '25487e6fee7f8dfc5639887af082a7df', NULL, NULL),
+(22, 'Nibir Joydhar', 'b190305036@cse.jnu.ac.bd', '$2y$10$v/Ctvecv3tiXFNiVlylMuOyRdFNt0gTvUE0JO.QjqNPDYrwcO.mLi', 'employer', '2025-03-21 10:41:49', 'active', 1, 'd8ec658e731807a14bfde47875e2a2c9', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -211,7 +214,7 @@ ALTER TABLE `profiles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Constraints for dumped tables
