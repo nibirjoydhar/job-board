@@ -27,7 +27,7 @@ if (isset($_POST['confirm_logout'])) {
 
 
     <div class="text-warning d-flex justify-content-center align-items-center vh-100 ">
-         <h1 class="text-center">We are Sorry to see you go -_-</h1> 
+         <h1 class="text-center">We are sorry to see you go -_-</h1> 
         </div>
 
 

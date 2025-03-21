@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 20, 2025 at 01:34 PM
+-- Host: localhost
+-- Generation Time: Mar 21, 2025 at 11:15 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -45,7 +45,13 @@ INSERT INTO `applications` (`id`, `job_id`, `user_id`, `cv`, `status`, `applied_
 (4, 9, 7, 'uploads/cvs/1742460581_data Science CA Marks.pdf', 'pending', '2025-03-20 10:32:37'),
 (5, 11, 7, 'uploads/cvs/1742460581_data Science CA Marks.pdf', 'pending', '2025-03-20 10:32:52'),
 (6, 10, 7, 'uploads/cvs/1742460581_data Science CA Marks.pdf', 'pending', '2025-03-20 10:32:57'),
-(7, 9, 12, 'uploads/cvs/1742469805_data Science CA Marks.pdf', 'pending', '2025-03-20 11:23:25');
+(8, 8, 11, 'uploads/cvs/1742492699_Nibir-Joydhar-FlowCV-Resume-20250226.pdf', 'pending', '2025-03-20 17:44:59'),
+(11, 11, 11, 'uploads/cvs/1742504635_Nibir-Joydhar-FlowCV-Resume-20250226.pdf', 'pending', '2025-03-20 21:40:52'),
+(12, 12, 11, 'uploads/cvs/1742504635_Nibir-Joydhar-FlowCV-Resume-20250226.pdf', 'pending', '2025-03-20 21:41:54'),
+(13, 13, 11, 'uploads/cvs/1742504635_Nibir-Joydhar-FlowCV-Resume-20250226.pdf', 'pending', '2025-03-20 21:42:16'),
+(14, 9, 11, 'uploads/cvs/1742504635_Nibir-Joydhar-FlowCV-Resume-20250226.pdf', 'pending', '2025-03-20 21:44:18'),
+(15, 10, 11, 'uploads/cvs/1742504635_Nibir-Joydhar-FlowCV-Resume-20250226.pdf', 'pending', '2025-03-20 21:46:38'),
+(16, 15, 11, 'uploads/cvs/1742504635_Nibir-Joydhar-FlowCV-Resume-20250226.pdf', 'pending', '2025-03-20 21:46:56');
 
 -- --------------------------------------------------------
 
@@ -76,8 +82,7 @@ INSERT INTO `jobs` (`id`, `title`, `description`, `location`, `salary`, `require
 (11, 'Software Engineer(Java/Kotlin)', 'We are looking for a talented Software Engineer with a strong focus on Java and Kotlin languages to join our team. The ideal candidate will have a solid foundation in Object-Oriented Programming (OOP), software design patterns, and expertise in building scalable and maintainable software. You will work on cutting-edge projects and leverage Java/Kotlin to deliver efficient, high-performance solutions.', 'Banani', 0.00, 'Strong foundation in OOP, design patterns, and software architecture.\r\nProficiency in Java/Kotlin and related frameworks such as Spring Boot, Micronaut etc.\r\nProficiency in building, maintaining, and optimizing RESTful APIs and microservices architectures.\r\nFamiliarity with database or ORM libraries including JPA/Hibernate, QueryDSL, JOOQ etc\r\nStrong knowledge of SQL and NoSQL databases (e.g., PostgreSQL, MySQL, ElasticSearch, Redis).\r\nExperience with build tools such as Gradle for managing dependencies and automating the build process.\r\nFamiliarity with version control systems, particularly Git.\r\nUnderstanding of security best practices, including encryption, authentication, and authorization mechanisms.\r\nFamiliarity with cloud platforms like AWS and containerization technologies such as Docker and Kubernetes.\r\nExperience with CI/CD pipelines and automated testing frameworks.', 'Develop and maintain back-end applications using Java/Kotlin.\r\nDesign and implement scalable, secure, and high-performance APIs, microservices, and system integrations.\r\nCollaborate with cross-functional teams to ensure seamless integration with front-end components and other systems.\r\nOptimize application performance, troubleshoot issues, and ensure high availability and reliability.\r\nWrite clean, maintainable, and well-documented code following industry best practices.\r\nParticipate in code reviews, testing, and deployment activities to ensure high-quality deliverables.\r\nStay updated with the latest tools, frameworks, and technologies to continuously improve development practices.', 4, '2025-03-19 22:38:34'),
 (12, 'Software Engineer', 'What we are looking for:\r\n• Computer Science (or related technical field) graduates or final semester students\r\n• Good programming skills in at least one of the following languages: C/C++, C#, Java or Python\r\n• Knowledge of Data Structures and Algorithms\r\n• Basic knowledge of SQL and relational databases\r\n• Ability to communicate technical concepts clearly and effectively', 'Therap (BD) Ltd. • Dhaka • via Jobs At Therap (BD) Ltd. - Trakstar', 30000.00, 'What we are looking for:\r\n• Computer Science (or related technical field) graduates or final semester students\r\n• Good programming skills in at least one of the following languages: C/C++, C#, Java or Python\r\n• Knowledge of Data Structures and Algorithms\r\n• Basic knowledge of SQL and relational databases\r\n• Ability to communicate technical concepts clearly and effectively', 'What we are looking for:\r\n• Computer Science (or related technical field) graduates or final semester students\r\n• Good programming skills in at least one of the following languages: C/C++, C#, Java or Python\r\n• Knowledge of Data Structures and Algorithms\r\n• Basic knowledge of SQL and relational databases\r\n• Ability to communicate technical concepts clearly and effectively', 13, '2025-03-20 11:58:01'),
 (13, 'a', 'a', 'a', 0.00, 'a', 'a', 13, '2025-03-20 11:59:26'),
-(15, 'a', 'a', 'a', 0.00, 'a', 'a', 13, '2025-03-20 12:04:40'),
-(17, '1', '1', '1', 1.00, '1', '1', 13, '2025-03-20 12:06:17');
+(15, 'a', 'a', 'a', 0.00, 'a', 'a', 13, '2025-03-20 12:04:40');
 
 -- --------------------------------------------------------
 
@@ -108,12 +113,12 @@ CREATE TABLE `profiles` (
 --
 
 INSERT INTO `profiles` (`id`, `user_id`, `full_name`, `bio`, `profile_photo`, `phone`, `address`, `linkedin`, `github`, `website`, `cv`, `skills`, `experience`, `created_at`, `updated_at`) VALUES
-(1, 4, 'Nibir Joydhar', 'bio', 'uploads/profile_photos/1742469625_Screenshot 2025-03-16 152009.png', '0152154683', 'N/A', 'N/A', 'N/A', 'N/A', 'uploads/cvs/1742469625_data Science CA Marks.pdf', 'cp', '4 years', '2025-03-19 18:36:39', '2025-03-20 11:20:25'),
-(3, 2, 'Nibir', '.', 'uploads/profile_photos/1742422528_Screenshot 2025-03-16 152009.png', '.', '.', '.', '.', '.', 'uploads/cvs/1742422438_data Science CA Marks.pdf', '.', '.', '2025-03-19 21:35:11', '2025-03-19 22:15:28'),
+(1, 4, 'Nibir Joydhar', 'bio', 'uploads/profile_photos/1742491638_nibir.jpg', '0152154683', 'N/A', 'N/A', 'N/A', 'N/A', 'uploads/cvs/1742469625_data Science CA Marks.pdf', 'cp', '4 years', '2025-03-19 18:36:39', '2025-03-20 17:27:18'),
+(3, 2, 'Nibir', '.', 'uploads/profile_photos/1742511720_nibir.jpg', '.', '.', '.', '.', '.', 'uploads/cvs/1742511720_Nibir-Joydhar-FlowCV-Resume-20250226.pdf', '.', '.', '2025-03-19 21:35:11', '2025-03-20 23:02:00'),
 (4, 5, 'Hemel Ahmed', 'na', 'uploads/profile_photos/1742422585_Screenshot 2025-03-16 152009.png', '01883938712', 'Sadarghat', '.', '.', '.', 'uploads/cvs/1742456444_data Science CA Marks.pdf', '.', '.', '2025-03-19 21:59:26', '2025-03-20 07:40:44'),
-(5, 7, 'Shima Akter', 'bio', 'uploads/profile_photos/1742460581_476045490_4040210449577469_6040317946914963445_n.png', '01883938712', 'Sadarghat', 'https://www.linkedin.com/in/s-m-himel-ahmed-b69a07276/', '.', '.', 'uploads/cvs/1742460581_data Science CA Marks.pdf', 'na', 'na', '2025-03-20 08:40:27', '2025-03-20 08:49:41'),
-(6, 12, 'new', 'na', 'uploads/profile_photos/1742469935_476045490_4040210449577469_6040317946914963445_n.png', ',', ',', ',', ',', ',', 'uploads/cvs/1742469935_data Science CA Marks.pdf', ',', ',', '2025-03-20 11:25:12', '2025-03-20 11:25:35'),
-(7, 13, 'hello', 'ok,', 'uploads/profile_photos/1742471749_Screenshot 2025-03-16 152009.png', 'ok', 'ok', 'ok', 'ok', 'ok', 'uploads/cvs/1742471749_data Science CA Marks.pdf', 'ok', 'ok', '2025-03-20 11:32:14', '2025-03-20 11:55:49');
+(5, 7, 'Shima Hasan', 'bio', 'uploads/profile_photos/1742492383_Shima.jpg', '01883938712', 'Sadarghat', 'https://www.linkedin.com/in/s-m-himel-ahmed-b69a07276/', '.', '.', 'uploads/cvs/1742460581_data Science CA Marks.pdf', 'na', 'na', '2025-03-20 08:40:27', '2025-03-20 17:39:43'),
+(7, 13, 'hello', 'ok,', 'uploads/profile_photos/1742471749_Screenshot 2025-03-16 152009.png', 'ok', 'ok', 'ok', 'ok', 'ok', 'uploads/cvs/1742471749_data Science CA Marks.pdf', 'ok', 'ok', '2025-03-20 11:32:14', '2025-03-20 11:55:49'),
+(8, 11, 'Joydhar', 'No Bio', 'uploads/profile_photos/1742504635_nibir.jpg', '01521546883', '9-10 Chittaranjan Avenue', 'https://www.linkedin.com/in/nibirjoydhar/', 'https://github.com/nibirjoydhar', 'N/A', 'uploads/cvs/1742504635_Nibir-Joydhar-FlowCV-Resume-20250226.pdf', 'Programming', 'Freshers', '2025-03-20 21:01:02', '2025-03-20 21:03:55');
 
 -- --------------------------------------------------------
 
@@ -128,23 +133,24 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `role` enum('job_seeker','employer','admin') NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `status` enum('active','inactive') NOT NULL DEFAULT 'active'
+  `status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `is_verified` tinyint(1) DEFAULT 0,
+  `verification_code` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `created_at`, `status`) VALUES
-(2, 'nibir', 'nibir@gmail.com', '$2y$10$CH.uQJdYZYNw6P9xH2MvYOJcOHTn4OLbnB0f2fbrBe/jJH2neisgq', 'admin', '2025-03-19 17:41:37', 'active'),
-(4, 'Nibir Joydhar', 'nibirjoydhar@gmail.com', '$2y$10$ioFqqqKy.lBedi0hTsC76OVxNS8MKyhK/VOKv06gyZqKPTmpi70qC', 'employer', '2025-03-19 18:00:56', 'active'),
-(5, 'Hemel Ahmed', 'ahmedhemel889@gmail.com', '$2y$10$GVu/6jTC0z1cKitDFmT9oOeh6.dx/PTTIhW3lXjcq8WZ9eodHXbDK', 'job_seeker', '2025-03-19 21:58:20', 'active'),
-(7, 'Shima Hasan', 'shima@gmail.com', '$2y$10$o3roolkKYHGzrcBAMLGwk.8zK1leJwqqboJTQKey1nVZEOiWTu9.u', 'job_seeker', '2025-03-20 08:27:13', 'active'),
-(8, 'Hemel ', 'hemelahmed092@gmail.com', '$2y$10$G6vBDT2XxHfZ0zdTGSvuM.Dvyp6V0wG7L.Wsx5hEvVmyVt24izp0y', 'employer', '2025-03-20 08:59:14', 'active'),
-(10, 'MST SHIMA', 'mst@gmail.com', '$2y$10$DDV3TC4.6bEcsaZ.0yOSA.fZZEmKHdXplksdOYN6d0ppm1SXdZKN.', 'employer', '2025-03-20 09:04:22', 'active'),
-(11, 'Joydhar', 'joydhar@gmail.com', '$2y$10$7TV.wHgGM/4GUZwjp90EwO0AZzavdCGAZgVpCnqKRim0TKiHel/Rq', 'job_seeker', '2025-03-20 11:02:48', 'active'),
-(12, 'new', 'new@gmail.com', '$2y$10$2NOkqz/AD1Gq6XgcYBkLPOKoxgjOZ674Nu0D9NVQonZpnlGO1DNfG', 'job_seeker', '2025-03-20 11:22:48', 'active'),
-(13, 'hi', 'hi@gmail.com', '$2y$10$2NOkqz/AD1Gq6XgcYBkLPOKoxgjOZ674Nu0D9NVQonZpnlGO1DNfG', 'employer', '2025-03-20 11:28:11', 'active');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `created_at`, `status`, `is_verified`, `verification_code`) VALUES
+(2, 'nibir', 'nibir@gmail.com', '$2y$10$CH.uQJdYZYNw6P9xH2MvYOJcOHTn4OLbnB0f2fbrBe/jJH2neisgq', 'admin', '2025-03-19 17:41:37', 'active', 0, NULL),
+(4, 'Nibir Joydhar', 'nibirjoydhar@gmail.com', '$2y$10$ioFqqqKy.lBedi0hTsC76OVxNS8MKyhK/VOKv06gyZqKPTmpi70qC', 'employer', '2025-03-19 18:00:56', 'active', 1, NULL),
+(5, 'Hemel Ahmed', 'ahmedhemel889@gmail.com', '$2y$10$GVu/6jTC0z1cKitDFmT9oOeh6.dx/PTTIhW3lXjcq8WZ9eodHXbDK', 'job_seeker', '2025-03-19 21:58:20', 'active', 0, NULL),
+(7, 'Shima Hasan', 'shima@gmail.com', '$2y$10$o3roolkKYHGzrcBAMLGwk.8zK1leJwqqboJTQKey1nVZEOiWTu9.u', 'job_seeker', '2025-03-20 08:27:13', 'active', 0, NULL),
+(8, 'Hemel ', 'hemelahmed092@gmail.com', '$2y$10$G6vBDT2XxHfZ0zdTGSvuM.Dvyp6V0wG7L.Wsx5hEvVmyVt24izp0y', 'employer', '2025-03-20 08:59:14', 'active', 0, NULL),
+(11, 'Joydhar', 'joydhar@gmail.com', '$2y$10$7TV.wHgGM/4GUZwjp90EwO0AZzavdCGAZgVpCnqKRim0TKiHel/Rq', 'job_seeker', '2025-03-20 11:02:48', 'active', 0, NULL),
+(13, 'hi', 'hi@gmail.com', '$2y$10$2NOkqz/AD1Gq6XgcYBkLPOKoxgjOZ674Nu0D9NVQonZpnlGO1DNfG', 'employer', '2025-03-20 11:28:11', 'active', 0, NULL),
+(21, 'Nibir Joydhar', 'nibirjoydharnj@gmail.com', '$2y$10$GYa5ecGQO8ae9WYybDiDfeyEvUU7bENjGfhfW9kQiL3jmW55Fyhwe', 'employer', '2025-03-21 02:05:48', 'active', 1, '25487e6fee7f8dfc5639887af082a7df');
 
 --
 -- Indexes for dumped tables
@@ -187,7 +193,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `jobs`
@@ -199,13 +205,13 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `profiles`
 --
 ALTER TABLE `profiles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables
