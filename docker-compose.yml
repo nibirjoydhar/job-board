@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  jobboard-db:
+    image: mysql:8.0
+    container_name: jobboard-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: job_board
+      MYSQL_USER: jobuser
+      MYSQL_PASSWORD: job_password
+    volumes:
+      - jobboard-db-data:/var/lib/mysql
+    networks:
+      - jobboard-network
+
+  jobboard-web:
+    build: .
+    container_name: jobboard-web
+    depends_on:
+      - jobboard-db
+    environment:
+      DB_HOST: jobboard-db
+      DB_NAME: job_board
+      DB_USER: jobuser
+      DB_PASSWORD: job_password
+    ports:
+      - "8080:80"
+    networks:
+      - jobboard-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: jobboard-db
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "8081:80"
+    networks:
+      - jobboard-network
+
+networks:
+  jobboard-network:
+
+volumes:
+  jobboard-db-data:
