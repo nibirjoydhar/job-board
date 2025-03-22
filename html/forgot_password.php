@@ -26,7 +26,7 @@ if (isset($_POST['reset'])) {
         $conn->query("UPDATE users SET reset_token='$token', reset_expires='$expires' WHERE email='$email'");
 
         // Send reset email
-        $reset_link = "http://localhost/job-board/reset_password.php?token=$token";
+        $reset_link = "http://localhost:8080/reset_password.php?token=$token";
         $subject = "Password Reset Request";
         $body = "
         <p>Hello,</p>

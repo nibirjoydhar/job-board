@@ -110,19 +110,6 @@ $job_postings_result = $conn->query($job_postings_sql);
                         <?php endif; ?>
                         <div class="text-center mt-3">
                             <a href="update_profile.php" class="btn btn-primary">Update Profile</a>
-                            <a href="<?php
-                            switch ($_SESSION['role']) {
-                                case 'job_seeker':
-                                    echo 'dashboard.php';
-                                    break;
-                                case 'employer':
-                                    echo 'employer_dashboard.php';
-                                    break;
-                                case 'admin':
-                                    echo 'admin_dashboard.php';
-                                    break;
-                            }
-                            ?>" class="btn btn-secondary">Back to Dashboard</a>
                         </div>
                     </div>
                 </div>
