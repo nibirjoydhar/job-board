@@ -65,10 +65,10 @@ if (isset($_GET['token'])) {
                         <?php if ($message): ?>
                             <div class="alert alert-<?php echo $message_type; ?>">
                                 <?php echo $message; 
-                                    if($message_type=='success'){
-                                        echo "<br>Redirecting to login page.";
-                                        header("Refresh: 2; url=login.php");
-                                    }
+                                    // if($message_type=='success'){
+                                    //     echo "<br>Redirecting to login page.";
+                                    //     header("Refresh: 2; url=login.php");
+                                    // }
                                 ?>
                             </div>
                         <?php endif; ?>
