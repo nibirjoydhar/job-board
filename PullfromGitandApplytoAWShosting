@@ -1,4 +1,5 @@
-//go to the .pem file directory -> open terminal:
+//open terminal(ctrl+Alt+T):
+cd /opt/lampp/htdocs/job-board
 ssh -i jobboard.pem ubuntu@3.92.1.108
 //One it's connected then run below line:
 cd job-board
