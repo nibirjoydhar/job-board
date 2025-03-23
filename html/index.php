@@ -48,15 +48,18 @@ include('includes/db.php');
             $disabled = ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'employer') ? "disabled" : "";
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    echo "<div class='col-md-6 mb-4 animate__animated animate__fadeInUp'>";
-                    echo "<div class='card shadow-sm'>";
-                    echo "<div class='card-body'>";
+                    echo "<div class='col-md-6 mb-4 d-flex'>";
+                    echo "<div class='card shadow-sm h-100 d-flex flex-column p-4'>"; // Added more padding
+                    echo "<div class='card-body flex-grow-1'>";
                     echo "<h5 class='card-title'>" . $row['title'] . "</h5>";
-                    echo "<p class='card-text'>" . $row['description'] . "</p>";
+                    echo "<p class='card-text text-justify'>" . $row['description'] . "</p>"; // Justified text
                     echo "<p class='card-text'><strong>Posted by:</strong> " . $row['employer_name'] . "</p>";
-                    echo "<a href='view_job.php?job_id=" . $row['id'] . "' class='btn btn-success m-3'>View Details</a>";
-                    echo "<button class='apply-btn btn btn-success m-3 animate__animated animate__pulse animate__infinite' data-job-id='" . $row['id'] . "'>Apply Now</button>";
-                    echo "</div></div></div>";
+                    echo "</div>"; // Close card-body
+                    echo "<div class='p-3 text-center'>";
+                    echo "<a href='view_job.php?job_id=" . $row['id'] . "' class='btn btn-success m-1'>View Details</a>";
+                    echo "<button class='apply-btn btn btn-success m-1 animate__animated animate__pulse animate__infinite' data-job-id='" . $row['id'] . "'>Apply Now</button>";
+                    echo "</div>"; // Close button container
+                    echo "</div></div>";
                 }
             } else {
                 echo "<div class='col-12 text-center'><p>No jobs posted yet.</p></div>";
@@ -69,59 +72,59 @@ include('includes/db.php');
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-    $(document).ready(function() {
+        $(document).ready(function() {
 
-        function searchJobs() {
-            const query = $('#search').val();
+            function searchJobs() {
+                const query=$('#search').val();
+                $.ajax({
+                    url: 'search_jobs.php',
+                    type: 'GET',
+                    data: {
+                        query: query
+                    },
+                    success: function(response) {
+                        $('#job-listings').html(response);
+                    }
+                });
+            }
+
+        });
+        $(document).on("click", ".apply-btn", function() {
+            var button=$(this);
+            var jobId=button.data("job-id");
+
+            // Disable button and show loading text
+            button.prop("disabled", true);
+            button.html(`<span class="spinner-border spinner-border-sm"></span> Applying...`);
             $.ajax({
-                url: 'search_jobs.php',
-                type: 'GET',
+                url: "apply_job.php",
+                type: "GET",
                 data: {
-                    query: query
+                    job_id: jobId
                 },
+                dataType: "json",
                 success: function(response) {
-                    $('#job-listings').html(response);
+                    var toastType=response.status==="success"? "bg-success":
+                        response.status==="warning"? "bg-warning":"bg-danger";
+                    showToast(response.message, toastType);
+                },
+                error: function() {
+                    showToast("Something went wrong!", "bg-danger");
+                },
+                complete: function() {
+                    // Restore button state after request completes
+                    button.prop("disabled", false);
+                    button.html("Apply Now");
                 }
             });
-        }
 
-    });
-    $(document).on("click", ".apply-btn", function() {
-        var button = $(this);
-        var jobId = button.data("job-id");
+            function showToast(message, type) {
+                var toastContainer=$(".toast-container");
 
-        // Disable button and show loading text
-        button.prop("disabled", true);
-        button.html(`<span class="spinner-border spinner-border-sm"></span> Applying...`);
-        $.ajax({
-            url: "apply_job.php",
-            type: "GET",
-            data: {
-                job_id: jobId
-            },
-            dataType: "json",
-            success: function(response) {
-                var toastType = response.status === "success" ? "bg-success" :
-                    response.status === "warning" ? "bg-warning" : "bg-danger";
-                showToast(response.message, toastType);
-            },
-            error: function() {
-                showToast("Something went wrong!", "bg-danger");
-            },
-            complete: function() {
-                // Restore button state after request completes
-                button.prop("disabled", false);
-                button.html("Apply Now");
-            }
-        });
+                // Remove any existing toast before adding a new one
+                toastContainer.html('');
 
-        function showToast(message, type) {
-            var toastContainer = $(".toast-container");
-
-            // Remove any existing toast before adding a new one
-            toastContainer.html('');
-
-            var toastHTML = `
+                var toastHTML=`
                 <div id="custom-toast" class="toast align-items-center text-white ${type} border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
                     <div class="d-flex">
                         <div class="toast-body">${message}</div>
@@ -129,17 +132,17 @@ include('includes/db.php');
                     </div>
                 </div>`;
 
-            toastContainer.html(toastHTML);
+                toastContainer.html(toastHTML);
 
-            var toastElement = document.getElementById("custom-toast");
-            var toastInstance = new bootstrap.Toast(toastElement);
-            toastInstance.show();
+                var toastElement=document.getElementById("custom-toast");
+                var toastInstance=new bootstrap.Toast(toastElement);
+                toastInstance.show();
 
-            setTimeout(function() {
-                $(toastElement).toast('hide'); // Bootstrap method to hide toast
-            }, 3000);
-        }
-    });
+                setTimeout(function() {
+                    $(toastElement).toast('hide'); // Bootstrap method to hide toast
+                }, 3000);
+            }
+        });
     </script>
 
 </body>
