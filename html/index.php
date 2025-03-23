@@ -51,7 +51,7 @@ include('includes/db.php');
     <?php include('header.php'); ?>
 
     <!-- Toast Notification -->
-    <div class="toast-container position-fixed top-0 end-0 p-0" style="z-index: 1050;"></div>
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1050;"></div>
 
     <div class="container mt-5">
         <div class="hero-section text-center mb-5">
