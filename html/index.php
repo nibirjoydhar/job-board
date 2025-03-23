@@ -17,27 +17,34 @@ include('includes/db.php');
     <title>Job Board</title>
     <?php include('headlink.php'); ?>
     <style>
-    .job-description {
-        text-align: justify;
-        text-justify: inter-word;
-        display: block;
-        width: 100%;
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-    .card {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-    .card-body {
-        flex-grow: 1;
-    }
-    .card-footer {
-        text-align: center;
-        padding: 10px;
-    }
-</style>
+        .job-description {
+            text-align: justify;
+            text-justify: inter-word;
+            display: block;
+            width: 100%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-body {
+            flex-grow: 1;
+            padding-top: 15px;
+            /* Added padding only at top */
+            padding-bottom: 15px;
+            /* Added padding only at bottom */
+        }
+
+        .card-footer {
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
 </head>
 
 <body class="bg-light">
@@ -74,7 +81,7 @@ include('includes/db.php');
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='col-md-6 mb-4 d-flex'>";
                     echo "<div class='card shadow-sm h-100'>";
-                    echo "<div class='card-body py-3'>";
+                    echo "<div class='card-body'>";
                     echo "<h5 class='card-title'>" . $row['title'] . "</h5>";
                     echo "<p class='card-text job-description'>" . $row['description'] . "</p>";
                     echo "<p class='card-text'><strong>Posted by:</strong> " . $row['employer_name'] . "</p>";
