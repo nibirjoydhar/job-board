@@ -74,7 +74,7 @@ include('includes/db.php');
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='col-md-6 mb-4 d-flex'>";
                     echo "<div class='card shadow-sm h-100'>";
-                    echo "<div class='card-body'>";
+                    echo "<div class='card-body py-3'>";
                     echo "<h5 class='card-title'>" . $row['title'] . "</h5>";
                     echo "<p class='card-text job-description'>" . $row['description'] . "</p>";
                     echo "<p class='card-text'><strong>Posted by:</strong> " . $row['employer_name'] . "</p>";
