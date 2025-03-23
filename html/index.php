@@ -44,13 +44,29 @@ include('includes/db.php');
             text-align: center;
             padding: 10px;
         }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 10px; /* Add padding for smaller screens */
+            }
+            .hero-section img {
+                width: 100%; /* Make image responsive */
+                height: auto;
+            }
+            .hero-text {
+                padding: 10px;
+            }
+            .job-listings .col-md-6 {
+                width: 100%; /* Full width for mobile */
+            }
+        }
     </style>
 </head>
 
 <body class="bg-light">
     <?php include('header.php'); ?>
 
-    <!-- Toast Notification -->
     <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1050;"></div>
 
     <div class="container mt-5">
@@ -156,9 +172,9 @@ include('includes/db.php');
                 toastContainer.html('');
 
                 var toastHTML=`
-                <div id="custom-toast" class="toast align-items-center text-white ${type} border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
-                    <div class="d-flex">
-                        <div class="toast-body">${message}</div>
+                <div id="custom-toast" class="toast align-items-center text-white <span class="math-inline">\{type\} border\-0" role\="alert" aria\-live\="assertive" aria\-atomic\="true" data\-bs\-autohide\="true"\>
+<div class\="d\-flex"\>
+<div class\="toast\-body"\></span>{message}</div>
                         <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
                     </div>
                 </div>`;
