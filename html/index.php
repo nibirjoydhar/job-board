@@ -79,7 +79,7 @@ include('includes/db.php');
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    echo "<div class='col-md-6 mb-6 d-flex'>";
+                    echo "<div class='col-md-12 mb-6 d-flex'>";
                     echo "<div class='card shadow-sm h-100'>";
                     echo "<div class='card-body'>";
                     echo "<h5 class='card-title'>" . $row['title'] . "</h5>";
