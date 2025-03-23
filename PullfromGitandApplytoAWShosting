@@ -1,0 +1,7 @@
+ssh -i jobboard.pem ubuntu@3.92.1.108
+cd job-board
+git status
+git pull origin main
+sudo docker-compose down
+sudo docker image prune -f
+sudo docker-compose up -d --build
