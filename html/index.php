@@ -51,7 +51,7 @@ include('includes/db.php');
     <?php include('header.php'); ?>
 
     <!-- Toast Notification -->
-    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1050;"></div>
+    <div class="toast-container position-fixed top-0 end-0 p-0" style="z-index: 1050;"></div>
 
     <div class="container mt-5">
         <div class="hero-section text-center mb-5">
@@ -79,7 +79,7 @@ include('includes/db.php');
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    echo "<div class='col-md-12 mb-6 d-flex'>";
+                    echo "<div class='col-md-6 mb-4 d-flex'>";
                     echo "<div class='card shadow-sm h-100'>";
                     echo "<div class='card-body'>";
                     echo "<h5 class='card-title'>" . $row['title'] . "</h5>";
