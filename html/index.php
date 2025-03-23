@@ -16,6 +16,28 @@ include('includes/db.php');
 <head>
     <title>Job Board</title>
     <?php include('headlink.php'); ?>
+    <style>
+    .job-description {
+        text-align: justify;
+        text-justify: inter-word;
+        display: block;
+        width: 100%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .card-body {
+        flex-grow: 1;
+    }
+    .card-footer {
+        text-align: center;
+        padding: 10px;
+    }
+</style>
 </head>
 
 <body class="bg-light">
@@ -41,24 +63,26 @@ include('includes/db.php');
                 </div>
             </div>
         </div>
+
         <div class="row" id="job-listings">
             <?php
             $sql = "SELECT jobs.*, users.name AS employer_name FROM jobs JOIN users ON jobs.employer_id = users.id";
             $result = $conn->query($sql);
             $disabled = ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'employer') ? "disabled" : "";
+
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='col-md-6 mb-4 d-flex'>";
-                    echo "<div class='card shadow-sm h-100 d-flex flex-column p-4'>"; // Added more padding
-                    echo "<div class='card-body flex-grow-1'>";
+                    echo "<div class='card shadow-sm h-100'>";
+                    echo "<div class='card-body'>";
                     echo "<h5 class='card-title'>" . $row['title'] . "</h5>";
-                    echo "<p class='card-text text-justify'>" . $row['description'] . "</p>"; // Justified text
+                    echo "<p class='card-text job-description'>" . $row['description'] . "</p>";
                     echo "<p class='card-text'><strong>Posted by:</strong> " . $row['employer_name'] . "</p>";
                     echo "</div>"; // Close card-body
-                    echo "<div class='p-3 text-center'>";
+                    echo "<div class='card-footer'>";
                     echo "<a href='view_job.php?job_id=" . $row['id'] . "' class='btn btn-success m-1'>View Details</a>";
                     echo "<button class='apply-btn btn btn-success m-1 animate__animated animate__pulse animate__infinite' data-job-id='" . $row['id'] . "'>Apply Now</button>";
-                    echo "</div>"; // Close button container
+                    echo "</div>"; // Close card-footer
                     echo "</div></div>";
                 }
             } else {
