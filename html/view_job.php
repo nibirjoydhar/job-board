@@ -1,16 +1,10 @@
 <?php
 session_start();
-// if (!isset($_SESSION['user_id'])) {
-//     header("Location: login.php");
-//     exit();
-// }
-
 include('includes/db.php');
 
 // Fetch the job details using the job id from the URL
 if (isset($_GET['job_id'])) {
     $job_id = $_GET['job_id'];
-    // Modify the query to join the jobs and users table to get employer name
     $sql = "SELECT jobs.*, users.name AS employer_name FROM jobs 
             JOIN users ON jobs.employer_id = users.id 
             WHERE jobs.id = '$job_id'";
@@ -33,6 +27,21 @@ if (isset($_GET['job_id'])) {
 <head>
     <title>Job Details</title>
     <?php include('headlink.php'); ?>
+    <style>
+        .card-body {
+            padding: 20px; /* Padding on all sides */
+        }
+
+        .card-body p {
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        .card-footer {
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
 </head>
 
 <body class="bg-light">
@@ -56,9 +65,9 @@ if (isset($_GET['job_id'])) {
                         <p><strong>Responsibilities:</strong></p>
                         <p><?php echo nl2br(htmlspecialchars($job['responsibilities'])); ?></p>
                         <p><strong>Posted By:</strong> <?php echo htmlspecialchars($job['employer_name']); ?></p>
-
-                        <!-- Apply Now Button -->
-                        <button class="apply-btn btn btn-success m-3 animate__animated animate__pulse animate__infinite"
+                    </div>
+                    <div class="card-footer">
+                        <button class="apply-btn btn btn-success m-2 animate__animated animate__pulse animate__infinite"
                             data-job-id="<?php echo $job['id']; ?>">
                             Apply Now
                         </button>
@@ -97,7 +106,6 @@ if (isset($_GET['job_id'])) {
                 showToast("Something went wrong!", "bg-danger");
             },
             complete: function() {
-                // Restore button state after request completes
                 button.prop("disabled", false);
                 button.html("Apply Now");
             }
@@ -105,10 +113,7 @@ if (isset($_GET['job_id'])) {
 
         function showToast(message, type) {
             var toastContainer = $(".toast-container");
-
-            // Remove any existing toast before adding a new one
             toastContainer.html('');
-
             var toastHTML = `
                 <div id="custom-toast" class="toast align-items-center text-white ${type} border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
                     <div class="d-flex">
@@ -116,15 +121,12 @@ if (isset($_GET['job_id'])) {
                         <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
                     </div>
                 </div>`;
-
             toastContainer.html(toastHTML);
-
             var toastElement = document.getElementById("custom-toast");
             var toastInstance = new bootstrap.Toast(toastElement);
             toastInstance.show();
-
             setTimeout(function() {
-                $(toastElement).toast('hide'); // Bootstrap method to hide toast
+                $(toastElement).toast('hide');
             }, 3000);
         }
     });
