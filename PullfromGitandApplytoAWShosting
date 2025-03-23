@@ -1,6 +1,16 @@
+//To pull:
+git pull --rebase origin main
+
+//To push:
+git add .
+git commit -m "... Updated"
+git push
+
+//For remote user
 //open terminal(ctrl+Alt+T):
 cd /opt/lampp/htdocs/job-board
 ssh -i jobboard.pem ubuntu@3.92.1.108
+
 //One it's connected then run below line:
 cd job-board
 git status
