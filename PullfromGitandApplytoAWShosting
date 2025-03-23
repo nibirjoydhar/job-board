@@ -1,4 +1,6 @@
+//go to the .pem file directory -> open terminal:
 ssh -i jobboard.pem ubuntu@3.92.1.108
+//One it's connected then run below line:
 cd job-board
 git status
 git pull origin main
