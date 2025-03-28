@@ -73,12 +73,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if ($conn->query($sql)) {
-        $_SESSION['name'] = $full_name;
         echo "<div id='toastMessage' class='toast bg-success text-white'>Profile updated successfully.</div>";
-        echo "<script>setTimeout(function(){ window.location.href = 'profile.php'; }, 3000);</script>";
-        exit();
-    }
-    else {
+        $_SESSION['name']=$full_name;
+    } else {
         echo "<div id='toastMessage' class='toast bg-danger text-white'>Error updating profile: " . $conn->error . "</div>";
     }
 }
@@ -218,6 +215,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 toastMessage.classList.add('show');
                 setTimeout(function() {
                     toastMessage.classList.remove('show');
+                    window.location.href = 'profile.php'; 
                 }, 3000); // Hide after 3 seconds
             }
         });

@@ -60,7 +60,7 @@ if (isset($_POST['register'])) {
                     $mail->Subject = 'Verify your email address';
                     $mail->isHTML(true);  // Enable HTML email format
 
-$mail->Body = '
+                    $mail->Body = '
     <html>
     <head>
         <meta charset="UTF-8">
@@ -122,18 +122,18 @@ $mail->Body = '
 
     <!-- Toast Notification -->
     <?php if ($message): ?>
-    <div class="toast-container position-fixed top-0 end-0 p-3">
-        <div class="toast align-items-center text-white bg-<?php echo $message_type; ?> border-0" role="alert"
-            aria-live="assertive" aria-atomic="true">
-            <div class="d-flex">
-                <div class="toast-body">
-                    <?php echo $message; ?>
+        <div class="toast-container position-fixed top-0 end-0 p-3">
+            <div class="toast align-items-center text-white bg-<?php echo $message_type; ?> border-0" role="alert"
+                aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <?php echo $message; ?>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
                 </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                    aria-label="Close"></button>
             </div>
         </div>
-    </div>
     <?php endif; ?>
 
     <div class="container mt-5">
@@ -182,17 +182,15 @@ $mail->Body = '
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-    // Initialize toast if a message exists
-    <?php if ($message): ?>
-    var toast = new bootstrap.Toast(document.querySelector('.toast'));
-    toast.show();
-    // <?php
-    // if($message_type=='success'){
-    //     setTimeout(function(){ window.location.href = 'profile.php'; }, 3000);
-    // }
-    // ?>
+        // Initialize toast if a message exists
+        <?php if ($message): ?>
+            var toast=new bootstrap.Toast(document.querySelector('.toast'));
+            toast.show();
+            <?php if($message_type=='success'){ ?>
+                setTimeout(function(){ window.location.href = 'profile.php'; }, 3000);
+            <?php } ?>
 
-    <?php endif; ?>
+        <?php endif; ?>
     </script>
 </body>
 
