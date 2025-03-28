@@ -28,13 +28,13 @@ $job_postings_result = $conn->query($job_postings_sql);
     <title>Employer Dashboard</title>
     <?php include('headlink.php'); ?>
     <style>
-    .profile-photo {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 3px solid #ffc107;
-    }
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ffc107;
+        }
     </style>
 </head>
 
@@ -51,63 +51,63 @@ $job_postings_result = $conn->query($job_postings_sql);
                         <h2 class="card-title text-center mb-4">Your Profile</h2>
                         <div class="text-center mb-4">
                             <?php if (!empty($profile['profile_photo'])): ?>
-                            <img src="<?php echo htmlspecialchars($profile['profile_photo']); ?>" alt="Profile Photo"
-                                class="profile-photo">
+                                <img src="<?php echo htmlspecialchars($profile['profile_photo']); ?>" alt="Profile Photo"
+                                    class="profile-photo">
                             <?php else: ?>
-                            <img src="images/default-profile.png" alt="Default Profile Photo" class="profile-photo">
+                                <img src="images/default-profile.png" alt="Default Profile Photo" class="profile-photo">
                             <?php endif; ?>
                         </div>
                         <?php if ($profile): ?>
-                        <table class="table table-striped">
-                            <tr>
-                                <th>Full Name</th>
-                                <td><?php echo htmlspecialchars($profile['full_name']); ?></td>
-                            </tr>
-                            <tr>
-                                <th>Bio</th>
-                                <td><?php echo htmlspecialchars($profile['bio']); ?></td>
-                            </tr>
-                            <tr>
-                                <th>Phone</th>
-                                <td><?php echo htmlspecialchars($profile['phone']); ?></td>
-                            </tr>
-                            <tr>
-                                <th>Address</th>
-                                <td><?php echo htmlspecialchars($profile['address']); ?></td>
-                            </tr>
-                            <tr>
-                                <th>LinkedIn</th>
-                                <td><a href="<?php echo htmlspecialchars($profile['linkedin']); ?>"
-                                        target="_blank">Profile</a></td>
-                            </tr>
-                            <tr>
-                                <th>GitHub</th>
-                                <td><a href="<?php echo htmlspecialchars($profile['github']); ?>"
-                                        target="_blank">Profile</a></td>
-                            </tr>
-                            <tr>
-                                <th>Website</th>
-                                <td><a href="<?php echo htmlspecialchars($profile['website']); ?>"
-                                        target="_blank">Visit</a></td>
-                            </tr>
-                            <tr>
-                                <th>Skills</th>
-                                <td><?php echo htmlspecialchars($profile['skills']); ?></td>
-                            </tr>
-                            <tr>
-                                <th>Experience</th>
-                                <td><?php echo htmlspecialchars($profile['experience']); ?></td>
-                            </tr>
-                            <?php if (!empty($profile['cv'])): ?>
-                            <tr>
-                                <th>CV</th>
-                                <td><a href="<?php echo htmlspecialchars($profile['cv']); ?>" target="_blank">Download
-                                        CV</a></td>
-                            </tr>
-                            <?php endif; ?>
-                        </table>
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>Full Name</th>
+                                    <td><?php echo htmlspecialchars($profile['full_name']); ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Bio</th>
+                                    <td><?php echo htmlspecialchars($profile['bio']); ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Phone</th>
+                                    <td><?php echo htmlspecialchars($profile['phone']); ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Address</th>
+                                    <td><?php echo htmlspecialchars($profile['address']); ?></td>
+                                </tr>
+                                <tr>
+                                    <th>LinkedIn</th>
+                                    <td><a href="<?php echo htmlspecialchars($profile['linkedin']); ?>"
+                                            target="_blank">Profile</a></td>
+                                </tr>
+                                <tr>
+                                    <th>GitHub</th>
+                                    <td><a href="<?php echo htmlspecialchars($profile['github']); ?>"
+                                            target="_blank">Profile</a></td>
+                                </tr>
+                                <tr>
+                                    <th>Website</th>
+                                    <td><a href="<?php echo htmlspecialchars($profile['website']); ?>"
+                                            target="_blank">Visit</a></td>
+                                </tr>
+                                <tr>
+                                    <th>Skills</th>
+                                    <td><?php echo htmlspecialchars($profile['skills']); ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Experience</th>
+                                    <td><?php echo htmlspecialchars($profile['experience']); ?></td>
+                                </tr>
+                                <?php if (!empty($profile['cv'])): ?>
+                                    <tr>
+                                        <th>CV</th>
+                                        <td><a href="<?php echo htmlspecialchars($profile['cv']); ?>" target="_blank">Download
+                                                CV</a></td>
+                                    </tr>
+                                <?php endif; ?>
+                            </table>
                         <?php else: ?>
-                        <div class="alert alert-info">No profile details found.</div>
+                            <div class="alert alert-info">No profile details found.</div>
                         <?php endif; ?>
                         <div class="text-center mt-3">
                             <a href="update_profile.php" class="btn btn-primary">Update Profile</a>
@@ -159,38 +159,40 @@ $job_postings_result = $conn->query($job_postings_sql);
 
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-    $(document).ready(function() {
-        // Handle the delete button click
-        $(".delete-job").on("click", function() {
-            var jobId = $(this).data('id'); // Get the job ID from data attribute
-            var confirmation = confirm("Are you sure you want to delete this job?");
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-            if (confirmation) {
-                // Make AJAX request to delete the job
-                $.ajax({
-                    url: 'delete_job.php', // The PHP script that deletes the job
-                    type: 'POST',
-                    data: {
-                        job_id: jobId
-                    }, // Send the job_id to the backend
-                    dataType: 'json', // Expect a JSON response
-                    success: function(response) {
-                        if (response.status === 'success') {
-                            alert(response.message); // Show success message
-                            // Optionally, remove the job element from the page
-                            $("#job-" + jobId).remove();
-                        } else {
-                            alert(response.message); // Show error message
+    <script>
+        $(document).ready(function() {
+            // Handle the delete button click
+            $(".delete-job").on("click", function() {
+                var jobId=$(this).data('id'); // Get the job ID from data attribute
+                var confirmation=confirm("Are you sure you want to delete this job?");
+
+                if(confirmation) {
+                    // Make AJAX request to delete the job
+                    $.ajax({
+                        url: 'delete_job.php', // The PHP script that deletes the job
+                        type: 'POST',
+                        data: {
+                            job_id: jobId
+                        }, // Send the job_id to the backend
+                        dataType: 'json', // Expect a JSON response
+                        success: function(response) {
+                            if(response.status==='success') {
+                                alert(response.message); // Show success message
+                                // Optionally, remove the job element from the page
+                                $("#job-"+jobId).remove();
+                            } else {
+                                alert(response.message); // Show error message
+                            }
+                        },
+                        error: function() {
+                            alert('Error deleting the job. Please try again.');
                         }
-                    },
-                    error: function() {
-                        alert('Error deleting the job. Please try again.');
-                    }
-                });
-            }
+                    });
+                }
+            });
         });
-    });
     </script>
 
 </body>

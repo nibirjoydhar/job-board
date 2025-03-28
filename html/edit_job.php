@@ -104,22 +104,28 @@ if (isset($_POST['update_job'])) {
                         <h2 class="card-title">Edit Job: <?php echo htmlspecialchars($job['title']); ?></h2>
                         <form method="POST" action="edit_job.php?id=<?php echo $job['id']; ?>">
                             <div class="mb-3">
-                                <input type="text" name="title" class="form-control" placeholder="Job Title" value="<?php echo htmlspecialchars($job['title']); ?>" required>
+                                <input type="text" name="title" class="form-control" placeholder="Job Title"
+                                    value="<?php echo htmlspecialchars($job['title']); ?>" required>
                             </div>
                             <div class="mb-3">
-                                <textarea name="description" class="form-control" placeholder="Job Description" rows="5" required><?php echo htmlspecialchars($job['description']); ?></textarea>
+                                <textarea name="description" class="form-control" placeholder="Job Description" rows="5"
+                                    required><?php echo htmlspecialchars($job['description']); ?></textarea>
                             </div>
                             <div class="mb-3">
-                                <input type="text" name="location" class="form-control" placeholder="Location" value="<?php echo htmlspecialchars($job['location']); ?>" required>
+                                <input type="text" name="location" class="form-control" placeholder="Location"
+                                    value="<?php echo htmlspecialchars($job['location']); ?>" required>
                             </div>
                             <div class="mb-3">
-                                <input type="text" name="salary" class="form-control" placeholder="Salary" value="<?php echo htmlspecialchars($job['salary']); ?>">
+                                <input type="text" name="salary" class="form-control" placeholder="Salary"
+                                    value="<?php echo htmlspecialchars($job['salary']); ?>">
                             </div>
                             <div class="mb-3">
-                                <textarea name="requirements" class="form-control" placeholder="Requirements" rows="5"><?php echo htmlspecialchars($job['requirements']); ?></textarea>
+                                <textarea name="requirements" class="form-control" placeholder="Requirements"
+                                    rows="5"><?php echo htmlspecialchars($job['requirements']); ?></textarea>
                             </div>
                             <div class="mb-3">
-                                <textarea name="responsibilities" class="form-control" placeholder="Responsibilities" rows="5"><?php echo htmlspecialchars($job['responsibilities']); ?></textarea>
+                                <textarea name="responsibilities" class="form-control" placeholder="Responsibilities"
+                                    rows="5"><?php echo htmlspecialchars($job['responsibilities']); ?></textarea>
                             </div>
                             <button type="submit" name="update_job" class="btn btn-primary w-100">Update Job</button>
                         </form>
@@ -134,31 +140,35 @@ if (isset($_POST['update_job'])) {
 
     <!-- Toast Notification -->
     <?php if (isset($show_toast) && $show_toast): ?>
-        <div class="toast text-white <?php echo "bg-" . $message_type; ?> border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast text-white <?php echo "bg-" . $message_type; ?> border-0 show" role="alert" aria-live="assertive"
+            aria-atomic="true">
             <div class="d-flex">
                 <div class="toast-body">
                     <?php echo $message; ?>
                 </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
             </div>
         </div>
     <?php endif; ?>
 
     <?php include('footer.php'); ?>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
         // Automatically hide the toast after 3 seconds
-        document.addEventListener('DOMContentLoaded', function () {
-            var toast = document.querySelector('.toast');
-            if (toast) {
-                setTimeout(function () {
-                    var toastBootstrap = new bootstrap.Toast(toast);
+        document.addEventListener('DOMContentLoaded', function() {
+            var toast=document.querySelector('.toast');
+            if(toast) {
+                setTimeout(function() {
+                    var toastBootstrap=new bootstrap.Toast(toast);
                     toastBootstrap.hide();
                 }, 3000);
             }
         });
     </script>
+
 </body>
 
 </html>

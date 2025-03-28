@@ -11,13 +11,14 @@ $message_type = '';
 
 if (isset($_POST['reset'])) {
     $email = $conn->real_escape_string($_POST['email']);
-    
+
     // Check if email exists
     $sql = "SELECT * FROM users WHERE email = '$email'";
     $result = $conn->query($sql);
-    
+
     if ($result->num_rows === 1) {
-        $token = bin2hex(random_bytes(50));date_default_timezone_set('Asia/Dhaka'); // Set Bangladesh time
+        $token = bin2hex(random_bytes(50));
+        date_default_timezone_set('Asia/Dhaka'); // Set Bangladesh time
 
         date_default_timezone_set('Asia/Dhaka'); // Set Bangladesh time
         $expires = date('Y-m-d H:i:s', strtotime('+1 hour'));
@@ -73,13 +74,15 @@ if (isset($_POST['reset'])) {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <?php include('headlink.php'); ?>
     <title>Forgot Password</title>
 </head>
+
 <body>
     <?php include('header.php'); ?>
-    
+
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -92,7 +95,8 @@ if (isset($_POST['reset'])) {
                             </div>
                         <?php endif; ?>
                         <form method="POST" action="forgot_password.php">
-                            <input type="email" name="email" class="form-control mb-3" placeholder="Enter your email" required>
+                            <input type="email" name="email" class="form-control mb-3" placeholder="Enter your email"
+                                required>
                             <button type="submit" name="reset" class="btn btn-primary w-100">Send Reset Link</button>
                         </form>
                         <div class="text-center mt-3">
@@ -103,7 +107,11 @@ if (isset($_POST['reset'])) {
             </div>
         </div>
     </div>
-    
+
     <?php include('footer.php'); ?>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>

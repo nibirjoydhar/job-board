@@ -5,25 +5,25 @@
     <?php include('headlink.php'); ?>
     <title>Account Deactivated</title>
     <style>
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background-color: #f8f9fa;
-    }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
 
-    .card {
-        max-width: 400px;
-        width: 100%;
-        text-align: center;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+        .card {
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    .card img {
-        max-width: 100px;
-        margin: 20px auto;
-    }
+        .card img {
+            max-width: 100px;
+            margin: 20px auto;
+        }
     </style>
 </head>
 
@@ -36,6 +36,9 @@
         <a href="mailto:nibirjoydhar@gmail.com" class="btn btn-primary">Contact Support</a>
         <a href="index.php" class="btn btn-secondary mt-2">Back to Home</a>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>
