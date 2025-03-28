@@ -49,14 +49,14 @@
                 <!-- Show 'Pro Member' badge if user is premium -->
                 <?php if (isset($_SESSION['is_premium']) && $_SESSION['is_premium'] == 1): ?>
                 <li class="nav-item">
-                    <span class="badge bg-warning text-dark ms-2">
+                    <span class="badge bg-success text-dark ms-2">
                         <i class="fas fa-bolt"></i> Pro Member
                     </span>
                 </li>
                 <?php else: ?>
                 <!-- Become a Pro Member Button -->
                 <li class="nav-item">
-                    <a class="btn btn-warning fw-bold ms-2" href="premium.php"><i class="fas fa-bolt"></i>Become a Pro Member</a>
+                    <a class="btn btn-warning fw-bold ms-2" href="premium.php"><i class="fas fa-bolt"></i> Become a Pro Member</a>
                 </li>
                 <?php endif; ?>
 
