@@ -73,10 +73,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if ($conn->query($sql)) {
+        $_SESSION['name'] = $full_name;
         echo "<div id='toastMessage' class='toast bg-success text-white'>Profile updated successfully.</div>";
-        $_SESSION['name']=$full_name;
-        header("Refresh: 3; url=profile.php");
-    } else {
+        echo "<script>setTimeout(function(){ window.location.href = 'profile.php'; }, 3000);</script>";
+        exit();
+    }
+    else {
         echo "<div id='toastMessage' class='toast bg-danger text-white'>Error updating profile: " . $conn->error . "</div>";
     }
 }

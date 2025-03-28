@@ -186,6 +186,12 @@ $mail->Body = '
     <?php if ($message): ?>
     var toast = new bootstrap.Toast(document.querySelector('.toast'));
     toast.show();
+    // <?php
+    // if($message_type=='success'){
+    //     setTimeout(function(){ window.location.href = 'profile.php'; }, 3000);
+    // }
+    // ?>
+
     <?php endif; ?>
     </script>
 </body>
