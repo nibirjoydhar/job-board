@@ -15,8 +15,8 @@ $result = $conn->query($sql);
 <html>
 
 <head>
-    <title>Manage Users</title>
     <?php include('headlink.php');?>
+    <title>Manage Users</title>
 </head>
 
 <body class="bg-light">

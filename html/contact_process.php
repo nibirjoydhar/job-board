@@ -2,24 +2,22 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include('headlink.php'); ?>
     <title>Contact Information</title>
-    <?php include('headlink.php');?>
     <style>
-    body {
-        background-color: #f8f9fa;
-    }
+        body {
+            background-color: #f8f9fa;
+        }
 
-    .container {
-        margin-top: 50px;
-        max-width: 600px;
-    }
+        .container {
+            margin-top: 50px;
+            max-width: 600px;
+        }
 
-    .card {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-    }
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
     </style>
 </head>
 

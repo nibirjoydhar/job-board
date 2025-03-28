@@ -74,8 +74,8 @@ if (isset($_POST['reset'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Forgot Password</title>
     <?php include('headlink.php'); ?>
+    <title>Forgot Password</title>
 </head>
 <body>
     <?php include('header.php'); ?>

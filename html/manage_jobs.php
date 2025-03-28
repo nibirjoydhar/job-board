@@ -17,8 +17,8 @@ $result = $conn->query($sql);
 <html>
 
 <head>
-    <title>Manage Job Listings</title>
     <?php include('headlink.php');?>
+    <title>Manage Job Listings</title>
 
 </head>
 

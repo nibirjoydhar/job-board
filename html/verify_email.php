@@ -34,10 +34,8 @@ if (isset($_GET['code'])) {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Verification</title>
     <?php include('headlink.php'); ?>
+    <title>Email Verification</title>
 </head>
 
 <body class="bg-light">

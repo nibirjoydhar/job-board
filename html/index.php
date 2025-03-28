@@ -14,8 +14,8 @@ include('includes/db.php');
 <html>
 
 <head>
-    <title>Job Board</title>
     <?php include('headlink.php'); ?>
+    <title>Job Board</title>
     <style>
         .job-description {
             text-align: justify;

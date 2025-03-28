@@ -17,9 +17,10 @@ $profile = ($result->num_rows > 0) ? $result->fetch_assoc() : null;
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
+    <?php include('headlink.php'); ?>
     <title>Profile</title>
-    <?php include('headlink.php');?>
 
     <style>
         .profile-photo {
@@ -31,6 +32,7 @@ $profile = ($result->num_rows > 0) ? $result->fetch_assoc() : null;
         }
     </style>
 </head>
+
 <body class="bg-light">
     <?php include('header.php'); ?>
     <div class="container mt-5">
@@ -41,24 +43,59 @@ $profile = ($result->num_rows > 0) ? $result->fetch_assoc() : null;
                         <h2 class="card-title text-center mb-4">Your Profile</h2>
                         <div class="text-center mb-4">
                             <?php if (!empty($profile['profile_photo'])): ?>
-                                <img src="<?php echo htmlspecialchars($profile['profile_photo']); ?>" alt="Profile Photo" class="profile-photo">
+                                <img src="<?php echo htmlspecialchars($profile['profile_photo']); ?>" alt="Profile Photo"
+                                    class="profile-photo">
                             <?php else: ?>
                                 <img src="images/default-profile.png" alt="Default Profile Photo" class="profile-photo">
                             <?php endif; ?>
                         </div>
                         <?php if ($profile): ?>
                             <table class="table table-bordered">
-                                <tr><th>Full Name</th><td><?php echo htmlspecialchars($profile['full_name']); ?></td></tr>
-                                <tr><th>Bio</th><td><?php echo htmlspecialchars($profile['bio']); ?></td></tr>
-                                <tr><th>Phone</th><td><?php echo htmlspecialchars($profile['phone']); ?></td></tr>
-                                <tr><th>Address</th><td><?php echo htmlspecialchars($profile['address']); ?></td></tr>
-                                <tr><th>LinkedIn</th><td><a href="<?php echo htmlspecialchars($profile['linkedin']); ?>" target="_blank">Profile</a></td></tr>
-                                <tr><th>GitHub</th><td><a href="<?php echo htmlspecialchars($profile['github']); ?>" target="_blank">Profile</a></td></tr>
-                                <tr><th>Website</th><td><a href="<?php echo htmlspecialchars($profile['website']); ?>" target="_blank">Visit</a></td></tr>
-                                <tr><th>Skills</th><td><?php echo htmlspecialchars($profile['skills']); ?></td></tr>
-                                <tr><th>Experience</th><td><?php echo htmlspecialchars($profile['experience']); ?></td></tr>
+                                <tr>
+                                    <th>Full Name</th>
+                                    <td><?php echo htmlspecialchars($profile['full_name']); ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Bio</th>
+                                    <td><?php echo htmlspecialchars($profile['bio']); ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Phone</th>
+                                    <td><?php echo htmlspecialchars($profile['phone']); ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Address</th>
+                                    <td><?php echo htmlspecialchars($profile['address']); ?></td>
+                                </tr>
+                                <tr>
+                                    <th>LinkedIn</th>
+                                    <td><a href="<?php echo htmlspecialchars($profile['linkedin']); ?>"
+                                            target="_blank">Profile</a></td>
+                                </tr>
+                                <tr>
+                                    <th>GitHub</th>
+                                    <td><a href="<?php echo htmlspecialchars($profile['github']); ?>"
+                                            target="_blank">Profile</a></td>
+                                </tr>
+                                <tr>
+                                    <th>Website</th>
+                                    <td><a href="<?php echo htmlspecialchars($profile['website']); ?>"
+                                            target="_blank">Visit</a></td>
+                                </tr>
+                                <tr>
+                                    <th>Skills</th>
+                                    <td><?php echo htmlspecialchars($profile['skills']); ?></td>
+                                </tr>
+                                <tr>
+                                    <th>Experience</th>
+                                    <td><?php echo htmlspecialchars($profile['experience']); ?></td>
+                                </tr>
                                 <?php if (!empty($profile['cv'])): ?>
-                                    <tr><th>CV</th><td><a href="<?php echo htmlspecialchars($profile['cv']); ?>" target="_blank">Download CV</a></td></tr>
+                                    <tr>
+                                        <th>CV</th>
+                                        <td><a href="<?php echo htmlspecialchars($profile['cv']); ?>" target="_blank">Download
+                                                CV</a></td>
+                                    </tr>
                                 <?php endif; ?>
                             </table>
                         <?php else: ?>
@@ -71,9 +108,9 @@ $profile = ($result->num_rows > 0) ? $result->fetch_assoc() : null;
                 </div>
             </div>
             <div class="col-md-8">
-            <br><br><br>
+                <br><br><br>
 
-            <div class="card shadow-sm">
+                <div class="card shadow-sm">
                     <div class="card-body">
                         <h2 class="card-title">Admin Options</h2>
                         <ul class="list-group">
@@ -91,4 +128,5 @@ $profile = ($result->num_rows > 0) ? $result->fetch_assoc() : null;
     </div>
     <?php include('footer.php'); ?>
 </body>
+
 </html>

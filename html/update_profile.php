@@ -86,10 +86,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Profile</title>
     <?php include('headlink.php'); ?>
+    <title>Update Profile</title>
     <style>
         .profile-photo {
             width: 150px;

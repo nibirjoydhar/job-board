@@ -2,8 +2,7 @@
 <html lang="en">
 
 <head>
-    <?php 
-    include('headlink.php'); ?>
+    <?php include('headlink.php'); ?>
     <title>About Us</title>
 
 

@@ -50,8 +50,8 @@ if (isset($_GET['token'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Reset Password</title>
     <?php include('headlink.php'); ?>
+    <title>Reset Password</title>
 </head>
 <body>
     <?php include('header.php'); ?>

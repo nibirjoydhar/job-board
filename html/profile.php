@@ -18,8 +18,8 @@ $profile = ($result->num_rows > 0) ? $result->fetch_assoc() : null;
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Profile</title>
     <?php include('headlink.php');?>
+    <title>Profile</title>
 
     <style>
         .profile-photo {

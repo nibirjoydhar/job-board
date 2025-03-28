@@ -52,8 +52,8 @@ if (isset($_GET['job_id'])) {
 <html>
 
 <head>
-    <title>View Applications</title>
     <?php include('headlink.php'); ?>
+    <title>View Applications</title>
 </head>
 
 <body class="bg-light">

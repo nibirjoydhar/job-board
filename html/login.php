@@ -52,8 +52,8 @@ if (isset($_POST['login'])) {
 <html>
 
 <head>
-    <title>Login</title>
     <?php include('headlink.php'); ?>
+    <title>Login</title>
 </head>
 
 <body class="bg-light">

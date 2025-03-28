@@ -15,8 +15,8 @@ if (isset($_POST['confirm_logout'])) {
 <html>
 
 <head>
-    <title>Logout</title>
     <?php include('headlink.php');?>
+    <title>Logout</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">

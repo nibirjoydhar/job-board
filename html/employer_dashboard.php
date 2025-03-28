@@ -24,6 +24,7 @@ $job_postings_result = $conn->query($job_postings_sql);
 <html>
 
 <head>
+    <?php include('headlink.php'); ?>
     <title>Employer Dashboard</title>
     <?php include('headlink.php'); ?>
     <style>

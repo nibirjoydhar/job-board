@@ -25,8 +25,8 @@ if (isset($_GET['job_id'])) {
 <html lang="en">
 
 <head>
-    <title>Job Details</title>
     <?php include('headlink.php'); ?>
+    <title>Job Details</title>
     <style>
         .card-body {
             padding: 20px; /* Padding on all sides */

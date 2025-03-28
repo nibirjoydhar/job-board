@@ -27,8 +27,8 @@ $applied_jobs_result = $conn->query($applied_jobs_sql);
 <html>
 
 <head>
+<?php include('headlink.php'); ?>
     <title>Job Seeker Dashboard</title>
-    <?php include('headlink.php'); ?>
     <style>
         .profile-photo {
             width: 150px;
