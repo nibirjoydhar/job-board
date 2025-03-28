@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($card_number) && !empty($expiry_date) && !empty($cvv) && !empty($cardholder_name)) {
         $_SESSION['is_premium'] = 1; // Mark user as premium
         // After inserting card details, update the `is_premium` field for the user
-        $update_premium_status = "UPDATE users SET is_premium = 1 WHERE id = '$user_id'";
+        $update_premium_status = "UPDATE users SET is_premium = 1 WHERE id = " . $_SESSION['user_id'];
         $conn->query($update_premium_status);
 
         header("Location: profile.php?status=success");
