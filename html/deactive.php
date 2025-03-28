@@ -36,9 +36,7 @@
         <a href="mailto:nibirjoydhar@gmail.com" class="btn btn-primary">Contact Support</a>
         <a href="index.php" class="btn btn-secondary mt-2">Back to Home</a>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+ 
 </body>
 
 </html>

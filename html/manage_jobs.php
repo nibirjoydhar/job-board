@@ -17,7 +17,7 @@ $result = $conn->query($sql);
 <html>
 
 <head>
-    <?php include('headlink.php');?>
+    <?php include('headlink.php'); ?>
     <title>Manage Job Listings</title>
 
 </head>
@@ -73,23 +73,21 @@ $result = $conn->query($sql);
         </div>
     </div>
     <?php include('footer.php'); ?>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
 
-            $(".delete-job-admin").click(function () {
-                var jobId = $(this).data("id");
-                var confirmation = confirm("Are you sure you want to delete this job?");
-                
-                if (confirmation) {
+            $(".delete-job-admin").click(function() {
+                var jobId=$(this).data("id");
+                var confirmation=confirm("Are you sure you want to delete this job?");
+
+                if(confirmation) {
                     $.ajax({
                         url: "delete_job_admin.php",
                         type: "POST",
-                        data: { job_id: jobId },
-                        success: function (response) {
-                            if (response == "success") {
-                                $("#job-" + jobId).fadeOut(500, function () { $(this).remove(); });
+                        data: {job_id: jobId},
+                        success: function(response) {
+                            if(response=="success") {
+                                $("#job-"+jobId).fadeOut(500, function() {$(this).remove();});
                             } else {
                                 alert("Failed to delete job. Try again.");
                             }

@@ -2,7 +2,6 @@
 session_start();
 include('includes/db.php');
 
-
 // Redirect if not logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
@@ -17,13 +16,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Simulating payment processing (In a real system, integrate a payment gateway like Stripe)
     if (!empty($card_number) && !empty($expiry_date) && !empty($cvv) && !empty($cardholder_name)) {
-        $_SESSION['is_premium'] = 1; // Mark user as premium
-        // After inserting card details, update the `is_premium` field for the user
-        $update_premium_status = "UPDATE users SET is_premium = 1 WHERE id = " . $_SESSION['user_id'];
-        $conn->query($update_premium_status);
+        // Insert the card details into the payment_details table
+        $insert_card_details = "INSERT INTO payment_details (user_id, card_number, expiry_date, cvv, cardholder_name) 
+                                VALUES (?, ?, ?, ?, ?)";
 
-        header("Location: profile.php?status=success");
-        exit();
+        $stmt = $conn->prepare($insert_card_details);
+        $stmt->bind_param("issss", $_SESSION['user_id'], $card_number, $expiry_date, $cvv, $cardholder_name);
+
+        // Execute the query
+        if ($stmt->execute()) {
+            // After inserting card details, update the `is_premium` field for the user
+            $update_premium_status = "UPDATE users SET is_premium = 1 WHERE id = ?";
+            $stmt_update = $conn->prepare($update_premium_status);
+            $stmt_update->bind_param("i", $_SESSION['user_id']);
+            $stmt_update->execute();
+
+            // Redirect after success
+            header("Location: " . $_SERVER['HTTP_REFERER'] . "?status=success");
+            exit();
+        } else {
+            $error = "Error inserting payment details.";
+        }
     } else {
         $error = "All fields are required!";
     }
@@ -34,13 +47,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include('headlink.php'); ?>
     <title>Become a Pro Member</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body class="bg-light">
+    <?php include('header.php'); ?>
 
     <div class="container mt-5">
         <div class="card mx-auto" style="max-width: 400px;">
@@ -75,6 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </div>
+    <?php include('footer.php'); ?>
 
 </body>
 

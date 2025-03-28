@@ -153,9 +153,7 @@ if (isset($_POST['update_job'])) {
     <?php endif; ?>
 
     <?php include('footer.php'); ?>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
+    
     <script>
         // Automatically hide the toast after 3 seconds
         document.addEventListener('DOMContentLoaded', function() {
