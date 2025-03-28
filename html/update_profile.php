@@ -194,8 +194,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </div>
                             <?php endif; ?>
                             <div class="text-center mt-3">
-                                <button type="submit" class="btn btn-primary">Update Profile</button>
-                                <a href="profile.php" class="btn btn-secondary">Cancel</a>
+                                <button type="submit" class="btn btn-primary m-2">Update Profile</button>
+                                <a href="profile.php" class="btn btn-secondary m-2">Cancel</a>
                             </div>
                         </form>
                     </div>

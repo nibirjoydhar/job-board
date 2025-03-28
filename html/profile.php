@@ -64,7 +64,7 @@ $profile = ($result->num_rows > 0) ? $result->fetch_assoc() : null;
                         <?php else: ?>
                             <div class="alert alert-info">No profile details found.</div>
                         <?php endif; ?>
-                        <div class="text-center mt-3">
+                        <div class="text-center mt-3 mb-2">
                             <a href="update_profile.php" class="btn btn-primary">Update Profile</a>
                             <a href="<?php 
                                 switch ($_SESSION['role']) {
@@ -72,7 +72,7 @@ $profile = ($result->num_rows > 0) ? $result->fetch_assoc() : null;
                                     case 'employer': echo 'employer_dashboard.php'; break;
                                     case 'admin': echo 'admin_dashboard.php'; break;
                                 }
-                            ?>" class="btn btn-secondary">Back to Dashboard</a>
+                            ?>" class="btn btn-secondary m-2">Back to Dashboard</a>
                         </div>
                     </div>
                 </div>
