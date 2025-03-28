@@ -91,12 +91,12 @@ include('includes/db.php');
                     echo "<button class='apply-btn btn btn-success m-1 animate__animated animate__pulse animate__infinite' data-job-id='" . $row['id'] . "'>Apply Now</button>";
                     echo "</div>"; // Close card-footer
                     echo "</div></div>";
+                    echo "<hr>";
                 }
             } else {
                 echo "<div class='col-12 text-center'><p>No jobs posted yet.</p></div>";
             }
             ?>
-            <hr>
         </div>
     </div>
 
