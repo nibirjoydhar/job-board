@@ -18,7 +18,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
                        href="index.php">View Jobs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-bold <?php echo (in_array($current_page, ['login.php', 'register.php'])) ? 'active' : ''; ?>" 
+                    <a class="nav-link fw-bold <?php echo ($current_page=='login.php') ? 'active' : ''; ?>" 
                        href="login.php">Login</a>
                 </li>
                 <li class="nav-item">
@@ -28,7 +28,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 <?php else: ?>
                 <?php if ($_SESSION['role'] == 'job_seeker'): ?>
                 <li class="nav-item">
-                    <a class="nav-link fw-bold <?php echo (in_array($current_page, ['dashboard.php', 'job_seeker_dashboard.php'])) ? 'active' : ''; ?>" 
+                    <a class="nav-link fw-bold <?php echo ($current_page=='dashboard.php') ? 'active' : ''; ?>" 
                        href="dashboard.php">Dashboard</a>
                 </li>
                 <?php elseif ($_SESSION['role'] == 'employer'): ?>
