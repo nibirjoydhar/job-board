@@ -4,7 +4,7 @@
         <div class="row">
             <!-- Quick Links -->
 
-            <div class="col-md-4">
+            <div class="col-md-4" style="margin:solid 1px green;">
                 <h5>Quick Links</h5>
                 <ul class="list-unstyled">
                     <li><a href="index.php">Home</a></li>
@@ -16,7 +16,7 @@
             </div>
 
             <!-- Contact Information -->
-            <div class="col-md-4">
+            <div class="col-md-4" style="margin:solid 1px blue;">
                 <h5>Contact Us</h5>
                 <ul class="list-unstyled">
                     <li><i class="fas fa-map-marker-alt"></i> 9-10, Chittaranjan Avenue, Dhaka 1100</li>
@@ -26,7 +26,7 @@
             </div>
 
             <!-- Social Media -->
-            <div class="col-md-3">
+            <div class="col-md-3" style="margin:solid 1px red;">
                 <h5>Follow Us</h5>
                 <div class="social-icons">
                     <a href="https://www.facebook.com/whhooami" target="_blank"><i class="fab fa-facebook"></i></a>
@@ -35,6 +35,8 @@
                             class="fab fa-linkedin"></i></a>
                     <a href="https://www.instagram.com/nibirjoydhar/" target="_blank"><i
                             class="fab fa-instagram"></i></a>
+                    <a href="https://www.github.com/nibirjoydhar/" target="_blank"><i
+                            class="fab fa-github"></i></a>
                 </div>
             </div>
 
