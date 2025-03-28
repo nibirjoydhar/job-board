@@ -1,5 +1,7 @@
 <?php
 session_start();
+include('includes/db.php');
+
 
 // Redirect if not logged in
 if (!isset($_SESSION['user_id'])) {
