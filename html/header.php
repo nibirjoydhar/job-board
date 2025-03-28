@@ -54,6 +54,14 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     <a class="nav-link fw-bold <?php echo ($current_page == 'profile.php') ? 'active' : ''; ?>"
                         href="profile.php"><?php echo $_SESSION['name']; ?></a>
                 </li>
+                
+                <!-- Become a Pro Member Button -->
+                <?php if (!isset($_SESSION['is_premium']) || $_SESSION['is_premium'] == 0): ?>
+                <li class="nav-item">
+                    <a class="btn btn-warning fw-bold ms-2" href="premium.php">Become a Pro Member</a>
+                </li>
+                <?php endif; ?>
+
                 <li class="nav-item">
                     <a class="nav-link text-danger" href="logout.php">Logout</a>
                 </li>

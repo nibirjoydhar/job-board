@@ -27,10 +27,24 @@ if (isset($_POST['login'])) {
 
                 // Check if the account is active
                 if ($_SESSION['status'] == 'active') {
+                    // Set session variables
                     $_SESSION['user_id'] = $user['id'];
                     $_SESSION['role'] = $user['role'];
                     $_SESSION['name'] = $user['name'];
                     $_SESSION['email'] = $email;
+                    
+                    // Check if the user has a premium account
+                    $premium_check = "SELECT * FROM card_details WHERE user_id = '" . $user['id'] . "' LIMIT 1";
+                    $premium_result = $conn->query($premium_check);
+
+                    if ($premium_result->num_rows > 0) {
+                        // If the user has a premium account, update the session
+                        $_SESSION['is_premium'] = 1;
+                    } else {
+                        // Otherwise, set the session variable to 0
+                        $_SESSION['is_premium'] = 0;
+                    }
+
                     header("Refresh: 0; url=index.php"); // Redirect after login
                 } else {
                     $message = "Your account is inactive. Please contact support.";
@@ -48,6 +62,7 @@ if (isset($_POST['login'])) {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 
