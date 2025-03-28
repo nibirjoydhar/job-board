@@ -56,7 +56,7 @@
                 <?php else: ?>
                 <!-- Become a Pro Member Button -->
                 <li class="nav-item">
-                    <a class="btn btn-warning fw-bold ms-2" href="premium.php">Become a Pro Member</a>
+                    <a class="btn btn-warning fw-bold ms-2" href="premium.php"><i class="fas fa-bolt"></i>Become a Pro Member</a>
                 </li>
                 <?php endif; ?>
 

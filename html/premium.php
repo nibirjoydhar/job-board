@@ -30,6 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt_update = $conn->prepare($update_premium_status);
             $stmt_update->bind_param("i", $_SESSION['user_id']);
             $stmt_update->execute();
+            $_SESSION['is_premium'] = 1;
 
             // Redirect after success
             header("Location: " . $_SERVER['HTTP_REFERER'] . "?status=success");
