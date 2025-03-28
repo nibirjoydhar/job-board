@@ -74,6 +74,7 @@ if (isset($_POST['login'])) {
             </div>
         </div>
     </div>
+    <?php include('footer.php'); ?>
 
     <!-- Toast Notification for Successful Login -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -102,7 +103,6 @@ if (isset($_POST['login'])) {
             }).showToast();
         <?php endif; ?>
     </script>
-    <?php include('footer.php'); ?>
 
 </body>
 
