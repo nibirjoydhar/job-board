@@ -3,7 +3,6 @@
     <div class="container">
         <div class="row">
             <!-- Quick Links -->
-            <div class="col-md-1"></div>
 
             <div class="col-md-4 p-3">
                 <h5>Quick Links</h5>
@@ -27,7 +26,7 @@
             </div>
 
             <!-- Social Media -->
-            <div class="col-md-3 p-3">
+            <div class="col-md-4 p-3">
                 <h5>Follow Us</h5>
                 <div class="social-icons">
                     <a href="https://www.facebook.com/whhooami" target="_blank"><i class="fab fa-facebook"></i></a>

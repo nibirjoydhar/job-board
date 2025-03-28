@@ -47,11 +47,12 @@ if (isset($_POST['login'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
-    <?php include('headlink.php');?>
+    <?php include('headlink.php'); ?>
 
 </head>
 
 <body class="bg-light">
+    <?php include('header.php'); ?>
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -79,28 +80,30 @@ if (isset($_POST['login'])) {
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
     <script>
-    <?php if ($result->num_rows === 0): ?>
-    Swal.fire({
-        icon: 'error',
-        title: 'No admin found',
-        text: 'No admin found with this email address.',
-        showConfirmButton: true
-    });
-    <?php endif; ?>
+        <?php if ($result->num_rows === 0): ?>
+            Swal.fire({
+                icon: 'error',
+                title: 'No admin found',
+                text: 'No admin found with this email address.',
+                showConfirmButton: true
+            });
+        <?php endif; ?>
     </script>
 
     <script>
-    <?php if (isset($_SESSION['user_id'])): ?>
-    Toastify({
-        text: "Welcome, Admin!",
-        duration: 3000,
-        close: true,
-        gravity: "top",
-        position: "right",
-        backgroundColor: "green",
-    }).showToast();
-    <?php endif; ?>
+        <?php if (isset($_SESSION['user_id'])): ?>
+            Toastify({
+                text: "Welcome, Admin!",
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "green",
+            }).showToast();
+        <?php endif; ?>
     </script>
+    <?php include('footer.php'); ?>
+
 </body>
 
 </html>
