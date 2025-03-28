@@ -43,6 +43,7 @@ $job_postings_result = $conn->query($job_postings_sql);
 
     <div class="container mt-5">
         <h1 class="text-center mb-4">Employer Dashboard</h1>
+        <a href="post_job.php" class="btn btn-primary">Post a new job</a>
         <div class="row">
             <!-- Left Column (Profile Info) -->
             <div class="col-md-4">
@@ -111,6 +112,9 @@ $job_postings_result = $conn->query($job_postings_sql);
                         <?php endif; ?>
                         <div class="text-center mt-3">
                             <a href="update_profile.php" class="btn btn-primary">Update Profile</a>
+                        </div>
+                        <div class="text-center mt-3">
+                            <a href="post_job.php" class="btn btn-primary">Post a new job</a>
                         </div>
                     </div>
                 </div>

@@ -96,6 +96,7 @@ include('includes/db.php');
                 echo "<div class='col-12 text-center'><p>No jobs posted yet.</p></div>";
             }
             ?>
+            <hr>
         </div>
     </div>
 
