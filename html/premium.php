@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Simulating payment processing (In a real system, integrate a payment gateway like Stripe)
     if (!empty($card_number) && !empty($expiry_date) && !empty($cvv) && !empty($cardholder_name)) {
         // Insert the card details into the payment_details table
-        $insert_card_details = "INSERT INTO payment_details (user_id, card_number, expiry_date, cvv, cardholder_name) 
+        $insert_card_details = "INSERT INTO card_details (user_id, card_number, expiry_date, cvv, cardholder_name) 
                                 VALUES (?, ?, ?, ?, ?)";
 
         $stmt = $conn->prepare($insert_card_details);

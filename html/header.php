@@ -1,12 +1,3 @@
-<?php
-// Start the session and include the database connection if needed
-// session_start();
-// include('includes/db.php');
-
-// Get the current file name (e.g., 'index.php', 'dashboard.php', etc.)
-$current_page = basename($_SERVER['PHP_SELF']);
-?>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand fs-3" href="index.php">Job Board</a>
@@ -54,9 +45,16 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     <a class="nav-link fw-bold <?php echo ($current_page == 'profile.php') ? 'active' : ''; ?>"
                         href="profile.php"><?php echo $_SESSION['name']; ?></a>
                 </li>
-                
+
+                <!-- Show 'Pro Member' badge if user is premium -->
+                <?php if (isset($_SESSION['is_premium']) && $_SESSION['is_premium'] == 1): ?>
+                <li class="nav-item">
+                    <span class="badge bg-warning text-dark ms-2">
+                        <i class="fas fa-bolt"></i> Pro Member
+                    </span>
+                </li>
+                <?php else: ?>
                 <!-- Become a Pro Member Button -->
-                <?php if (!isset($_SESSION['is_premium']) || $_SESSION['is_premium'] == 0): ?>
                 <li class="nav-item">
                     <a class="btn btn-warning fw-bold ms-2" href="premium.php">Become a Pro Member</a>
                 </li>
