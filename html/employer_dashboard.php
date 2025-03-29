@@ -42,9 +42,9 @@ $job_postings_result = $conn->query($job_postings_sql);
     <?php include('header.php'); ?>
 
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Employer Dashboard</h1>
+        <h1 class="text-center mb-2">Employer Dashboard</h1>
         <div class="text-end">
-            <a href="post_job.php" class="btn btn-primary">Post a new job</a>
+            <a href="post_job.php" class="btn btn-primary mb-2">Post a new job</a>
         </div>
         <div class="row">
             <!-- Left Column (Profile Info) -->
