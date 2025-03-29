@@ -36,16 +36,13 @@ if (isset($_POST['login'])) {
                     // Check if the user has a premium account
                     $premium_check = "SELECT * FROM card_details WHERE user_id = '" . $user['id'] . "' LIMIT 1";
                     $premium_result = $conn->query($premium_check);
-
-                    if ($premium_result->num_rows > 0) {
-                        // If the user has a premium account, update the session
-                        $_SESSION['is_premium'] = 1;
-                    } else {
-                        // Otherwise, set the session variable to 0
-                        $_SESSION['is_premium'] = 0;
-                    }
-
-                    header("Refresh: 0; url=index.php"); // Redirect after login
+                    $_SESSION['is_premium'] = ($premium_result->num_rows > 0) ? 1 : 0;
+                    
+                    echo "<script>
+                        localStorage.setItem('toastMessage', 'Welcome, " . $user['name'] . "!');
+                        window.location.href = 'index.php';
+                    </script>";
+                    exit;
                 } else {
                     $message = "Your account is inactive. Please contact support.";
                     $message_type = 'danger'; // Error toast
@@ -62,32 +59,31 @@ if (isset($_POST['login'])) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html>
-
 <head>
     <?php include('headlink.php'); ?>
     <title>Login</title>
 </head>
-
 <body class="bg-light">
     <?php include('header.php'); ?>
-
-    <!-- Toast Notification -->
+    
+    <!-- Toast Notification for Errors -->
     <?php if ($message): ?>
-        <div class="toast-container position-fixed top-0 end-0 p-3">
-            <div class="toast align-items-center text-white bg-<?php echo $message_type; ?> border-0" role="alert"
-                aria-live="assertive" aria-atomic="true">
-                <div class="d-flex">
-                    <div class="toast-body">
-                        <?php echo $message; ?>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                let toastHTML = `
+                <div class="toast show position-fixed top-0 end-0 p-3" style="z-index: 1050;" role="alert">
+                    <div class="toast-header bg-<?php echo $message_type; ?> text-white">
+                        <strong class="me-auto">Notification</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
                     </div>
-                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                        aria-label="Close"></button>
-                </div>
-            </div>
-        </div>
+                    <div class="toast-body"><?php echo $message; ?></div>
+                </div>`;
+                document.body.insertAdjacentHTML('beforeend', toastHTML);
+                setTimeout(() => { document.querySelector('.toast').remove(); }, 3000);
+            });
+        </script>
     <?php endif; ?>
 
     <div class="container mt-5">
@@ -101,11 +97,9 @@ if (isset($_POST['login'])) {
                                 <input type="email" name="email" class="form-control" placeholder="Email" required>
                             </div>
                             <div class="mb-3">
-                                <input type="password" name="password" class="form-control" placeholder="Password"
-                                    required>
+                                <input type="password" name="password" class="form-control" placeholder="Password" required>
                             </div>
-                            <button type="submit" name="login"
-                                class="btn btn-primary w-100 animate__animated animate__bounceIn">Login</button>
+                            <button type="submit" name="login" class="btn btn-primary w-100">Login</button>
                         </form>
                         <div class="text-center mt-3">
                             <a href="register.php">Don't have an account? Register</a><br>
@@ -118,17 +112,5 @@ if (isset($_POST['login'])) {
     </div>
 
     <?php include('footer.php'); ?>
-
-    <!-- Toast JavaScript (Bootstrap 5) -->
-    
-    <script>
-        // Initialize toast if a message exists
-        <?php if ($message): ?>
-            var toast = new bootstrap.Toast(document.querySelector('.toast'));
-            toast.show();
-        <?php endif; ?>
-    </script>
-
 </body>
-
 </html>
