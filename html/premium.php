@@ -14,7 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cvv = $_POST['cvv'];
     $cardholder_name = $_POST['cardholder_name'];
 
-    // Simulating payment processing (In a real system, integrate a payment gateway like Stripe)
     if (!empty($card_number) && !empty($expiry_date) && !empty($cvv) && !empty($cardholder_name)) {
         // Insert the card details into the payment_details table
         $insert_card_details = "INSERT INTO card_details (user_id, card_number, expiry_date, cvv, cardholder_name) 
@@ -23,17 +22,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $conn->prepare($insert_card_details);
         $stmt->bind_param("issss", $_SESSION['user_id'], $card_number, $expiry_date, $cvv, $cardholder_name);
 
-        // Execute the query
         if ($stmt->execute()) {
-            // After inserting card details, update the `is_premium` field for the user
+            // Update user premium status
             $update_premium_status = "UPDATE users SET is_premium = 1 WHERE id = ?";
             $stmt_update = $conn->prepare($update_premium_status);
             $stmt_update->bind_param("i", $_SESSION['user_id']);
             $stmt_update->execute();
             $_SESSION['is_premium'] = 1;
 
-            // Redirect after success
-            header("Location: " . $_SERVER['HTTP_REFERER']);
+            // Store toast message and redirect using JavaScript
+            echo "<script>
+                localStorage.setItem('toastMessage', 'Payment successful! You are now a Pro Member.');
+                window.location.href = 'index.php';
+            </script>";
             exit();
         } else {
             $error = "Error inserting payment details.";
@@ -46,13 +47,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <?php include('headlink.php'); ?>
     <title>Become a Pro Member</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-
 <body class="bg-light">
     <?php include('header.php'); ?>
 
@@ -92,5 +91,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php include('footer.php'); ?>
 
 </body>
-
 </html>

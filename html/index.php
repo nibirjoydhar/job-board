@@ -91,7 +91,6 @@ include('includes/db.php');
                     echo "<button class='apply-btn btn btn-success m-1 animate__animated animate__pulse animate__infinite' data-job-id='" . $row['id'] . "'>Apply Now</button>";
                     echo "</div>"; // Close card-footer
                     echo "</div></div>";
-                    echo "<hr>";
                 }
             } else {
                 echo "<div class='col-12 text-center'><p>No jobs posted yet.</p></div>";
@@ -101,7 +100,7 @@ include('includes/db.php');
     </div>
 
     <?php include('footer.php'); ?>
-    
+
     <script>
         $(document).ready(function() {
 
@@ -174,6 +173,26 @@ include('includes/db.php');
                 }, 3000);
             }
         });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            let message=localStorage.getItem('toastMessage');
+            if(message) {
+                let toastHTML=`
+                <div class="toast show position-fixed bottom-0 end-0 p-3" style="z-index: 1050;" role="alert">
+                    <div class="toast-header bg-success text-white">
+                        <strong class="me-auto">Success</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                    </div>
+                    <div class="toast-body">${message}</div>
+                </div>`;
+
+                document.body.insertAdjacentHTML('beforeend', toastHTML);
+
+                setTimeout(() => {document.querySelector('.toast').remove();}, 3000);
+                localStorage.removeItem('toastMessage');
+            }
+        });
+
     </script>
 
 </body>
