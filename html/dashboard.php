@@ -144,6 +144,8 @@ $applied_jobs_result = $conn->query($applied_jobs_sql);
             </div>
         </div>
     </div>
+    <?php include('footer.php'); ?>
+
 </body>
 
 </html>

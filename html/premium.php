@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['is_premium'] = 1;
 
             // Redirect after success
-            header("Location: " . $_SERVER['HTTP_REFERER'] . "?status=success");
+            header("Location: " . $_SERVER['HTTP_REFERER']);
             exit();
         } else {
             $error = "Error inserting payment details.";
