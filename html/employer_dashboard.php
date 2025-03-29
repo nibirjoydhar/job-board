@@ -43,7 +43,7 @@ $job_postings_result = $conn->query($job_postings_sql);
 
     <div class="container mt-5">
         <h1 class="text-center mb-4">Employer Dashboard</h1>
-        <a href="post_job.php" class="btn btn-primary float-end">Post a new job</a>
+        <a href="post_job.php" class="btn btn-primary text-end">Post a new job</a>
         <div class="row">
             <!-- Left Column (Profile Info) -->
             <div class="col-md-4">
