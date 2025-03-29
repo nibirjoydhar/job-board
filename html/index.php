@@ -54,13 +54,15 @@ include('includes/db.php');
     <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1050;"></div>
 
     <div class="container mt-5">
-        <div class="hero-section text-center mb-5">
+        <div class="hero-section position-relative text-center mb-5">
+            <div class="overlay position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
             <img src="images/hero.jpg" alt="Job Board Hero Image" class="img-fluid rounded">
-            <div class="hero-text">
+            <div class="hero-text position-absolute top-50 start-50 translate-middle text-white">
                 <h1 class="display-4">Find Your Dream Job</h1>
                 <p class="lead">Join thousands of job seekers and employers on our platform.</p>
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <div class="input-group mb-3">
