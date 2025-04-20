@@ -68,62 +68,61 @@ include('includes/db.php');
 </head>
 
 <body class="bg-light">
-    <div>
-        <?php include('header.php'); ?>
+    <?php include('header.php'); ?>
 
-        <!-- Toast Notification -->
-        <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1050;"></div>
+    <!-- Toast Notification -->
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1050;"></div>
 
-        <div class="container mt-5">
-            <div class="hero-section position-relative text-center mb-5">
-                <div class="overlay position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
-                <img src="images/hero.jpg" alt="Job Board Hero Image" class="img-fluid rounded">
-                <div class="hero-text position-absolute top-50 start-50 translate-middle text-white">
-                    <h1 class="display-4">Find Your Dream Job</h1>
-                    <p class="lead">Join thousands of job seekers and employers on our platform.</p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-8 mx-auto">
-                    <div class="input-group mb-3">
-                        <input type="text" id="search" class="form-control"
-                            placeholder="Search by keyword, location, or salary">
-                        <button class="btn btn-primary" onclick="searchJobs()">Search</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row" id="job-listings">
-                <?php
-                $sql = "SELECT jobs.*, users.name AS employer_name FROM jobs JOIN users ON jobs.employer_id = users.id";
-                $result = $conn->query($sql);
-                $disabled = ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'employer') ? "disabled" : "";
-
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<div class='col-md-6 mb-4 d-flex'>";
-                        echo "<div class='card shadow-sm h-100'>";
-                        echo "<div class='card-body'>";
-                        echo "<h5 class='card-title'>" . $row['title'] . "</h5>";
-                        echo "<p class='card-text job-description'>" . $row['description'] . "</p>";
-                        echo "<p class='card-text'><strong>Posted by:</strong> " . $row['employer_name'] . "</p>";
-                        echo "</div>"; // Close card-body
-                        echo "<div class='card-footer'>";
-                        echo "<a href='view_job.php?job_id=" . $row['id'] . "' class='btn btn-success m-1'>View Details</a>";
-                        echo "<button class='apply-btn btn btn-success m-1 animate__animated animate__pulse animate__infinite' data-job-id='" . $row['id'] . "'>Apply Now</button>";
-                        echo "</div>"; // Close card-footer
-                        echo "</div></div>";
-                    }
-                } else {
-                    echo "<div class='col-12 text-center'><p>No jobs posted yet.</p></div>";
-                }
-                ?>
+    <div class="container mt-5">
+        <div class="hero-section position-relative text-center mb-5">
+            <div class="overlay position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+            <img src="images/hero.jpg" alt="Job Board Hero Image" class="img-fluid rounded">
+            <div class="hero-text position-absolute top-50 start-50 translate-middle text-white">
+                <h1 class="display-4">Find Your Dream Job</h1>
+                <p class="lead">Join thousands of job seekers and employers on our platform.</p>
             </div>
         </div>
 
-        <?php include('footer.php'); ?>
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="input-group mb-3">
+                    <input type="text" id="search" class="form-control"
+                        placeholder="Search by keyword, location, or salary">
+                    <button class="btn btn-primary" onclick="searchJobs()">Search</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="job-listings">
+            <?php
+            $sql = "SELECT jobs.*, users.name AS employer_name FROM jobs JOIN users ON jobs.employer_id = users.id";
+            $result = $conn->query($sql);
+            $disabled = ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'employer') ? "disabled" : "";
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<div class='col-md-6 mb-4 d-flex'>";
+                    echo "<div class='card shadow-sm h-100'>";
+                    echo "<div class='card-body'>";
+                    echo "<h5 class='card-title'>" . $row['title'] . "</h5>";
+                    echo "<p class='card-text job-description'>" . $row['description'] . "</p>";
+                    echo "<p class='card-text'><strong>Posted by:</strong> " . $row['employer_name'] . "</p>";
+                    echo "</div>"; // Close card-body
+                    echo "<div class='card-footer'>";
+                    echo "<a href='view_job.php?job_id=" . $row['id'] . "' class='btn btn-success m-1'>View Details</a>";
+                    echo "<button class='apply-btn btn btn-success m-1 animate__animated animate__pulse animate__infinite' data-job-id='" . $row['id'] . "'>Apply Now</button>";
+                    echo "</div>"; // Close card-footer
+                    echo "</div></div>";
+                }
+            } else {
+                echo "<div class='col-12 text-center'><p>No jobs posted yet.</p></div>";
+            }
+            ?>
+        </div>
     </div>
+
+    <?php include('footer.php'); ?>
+
     <script>
         $(document).ready(function() {
 
