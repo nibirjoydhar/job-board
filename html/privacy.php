@@ -21,7 +21,7 @@
 
 <body>
     <?php include('header.php'); ?>
-    <div class="container">
+    <div class="container mt-5">
         <div class="card">
             <h2 class="text-center">Privacy Policy</h2>
             <p>Your privacy is important to us. This policy explains how we handle your personal data.</p>

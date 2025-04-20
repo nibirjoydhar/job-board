@@ -20,7 +20,7 @@
 <body>
     <?php include('header.php'); ?>
 
-    <div class="container">
+    <div class="container mt-5">
         <div class="card">
             <h2 class="text-center">Contact Information</h2>
             <p><strong>Phone:</strong> +880 1234 567 890</p>
