@@ -3,7 +3,7 @@
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark position-fixed">
     <div class="container">
         <a class="navbar-brand fs-3" href="index.php">Job Board</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
