@@ -14,7 +14,7 @@ if (file_exists(__DIR__ . '/../.env')) {
 $host = getenv('DB_HOST') ?: $_ENV['DB_HOST'] ?? 'localhost';
 $user = getenv('DB_USER') ?: $_ENV['DB_USER'] ?? 'root';
 // $pass = getenv('DB_PASS') ?: $_ENV['DB_PASS'] ?? '';
-$pass ='job_password';
+$pass ='12345';
 $dbname = getenv('DB_NAME') ?: $_ENV['DB_NAME'] ?? 'job_board';
 $port = getenv('DB_PORT') ?: $_ENV['DB_PORT'] ?? '3306';
 
