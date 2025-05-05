@@ -78,7 +78,7 @@ if (isset($_POST['register'])) {
                 Before you can start exploring the features, we need to confirm your email address. Please click the button below to verify your email:
             </p>
             <p style="text-align: center;">
-                <a href="http://3.92.1.108:8080/verify_email.php?code=' . $verification_code . '"
+                <a href="http://13.52.231.122:8080/verify_email.php?code=' . $verification_code . '"
                     style="background-color: #4CAF50; color: #ffffff; padding: 10px 20px; font-size: 16px; text-decoration: none; border-radius: 5px; display: inline-block;">
                     Verify Email Address
                 </a>
