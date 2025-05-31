@@ -122,7 +122,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Contact
 
-For support or queries, please contact us at support@jobboard.com
+For support or queries, please contact us at nibirjoydhar@gmail.com
 
 ## 🙏 Acknowledgments
 
