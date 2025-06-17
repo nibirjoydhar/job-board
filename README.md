@@ -1,10 +1,8 @@
-# JobBoard - Modern Job Posting Platform
+# JobBoard - Your Modern Job Posting Platform
 
-A robust and feature-rich job board platform built with PHP, MySQL, and Docker. This platform connects employers with potential candidates through an intuitive interface, offering comprehensive job posting and application management features.
+JobBoard is a robust and intuitive platform designed to connect employers with job seekers. Built with a focus on ease of use and powerful features, it streamlines the hiring process by offering comprehensive tools for job posting, application management, and candidate discovery.
 
-![JobBoard Platform](html/images/logo.png)
-
-## 🚀 Features
+## Key Features
 
 - **User Management**
   - Role-based authentication (Admin, Employer, Job Seeker)
@@ -30,7 +28,7 @@ A robust and feature-rich job board platform built with PHP, MySQL, and Docker. 
   - Applicant tracking
   - Premium features access
 
-## 🛠️ Tech Stack
+## Technology Stack
 
 - PHP 8.0+
 - MySQL 8.0
@@ -39,13 +37,13 @@ A robust and feature-rich job board platform built with PHP, MySQL, and Docker. 
 - Bootstrap (Frontend)
 - JavaScript/jQuery
 
-## 📋 Prerequisites
+## Prerequisites
 
 - Docker and Docker Compose installed
 - Git
 - Composer (for local development)
 
-## 🔧 Installation
+## Installation Guide
 
 1. Clone the repository:
    ```bash
@@ -67,7 +65,7 @@ A robust and feature-rich job board platform built with PHP, MySQL, and Docker. 
    - Main application: http://localhost:8080
    - PHPMyAdmin: http://localhost:8081
 
-## 🔐 Environment Configuration
+## Environment Configuration
 
 Configure the following in your `.env` file:
 
@@ -84,23 +82,23 @@ SMTP_USERNAME=your-username
 SMTP_PASSWORD=your-password
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 job-board/
-├── html/               # Application source code
-│   ├── css/           # Stylesheets
-│   ├── js/            # JavaScript files
-│   ├── images/        # Image assets
-│   ├── includes/      # PHP includes
-│   └── uploads/       # User uploads
-├── vendor/            # Composer dependencies
-├── Dockerfile         # PHP container configuration
-├── docker-compose.yml # Docker services configuration
-└── composer.json      # PHP dependencies
+├── html/               # Core application source code (PHP, JS, CSS, images)
+│   ├── css/           # Stylesheets for front-end presentation
+│   ├── js/            # JavaScript files for interactive elements
+│   ├── images/        # Static image assets like icons
+│   ├── includes/      # Reusable PHP components and functions
+│   └── uploads/       # Directory for user-uploaded content (e.g., resumes)
+├── vendor/            # Composer-managed PHP dependencies
+├── Dockerfile         # Docker configuration for the PHP application container
+├── docker-compose.yml # Defines and links Docker services (app, database)
+└── composer.json      # Lists PHP project dependencies
 ```
 
-## 🔒 Security
+## Security Measures
 
 - Password hashing using PHP's password_hash()
 - SQL injection prevention
@@ -108,7 +106,7 @@ job-board/
 - CSRF protection
 - Secure file upload handling
 
-## 🤝 Contributing
+## Contribution Guidelines
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
@@ -116,15 +114,15 @@ job-board/
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📝 License
+## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is open-sourced under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-## 📧 Contact
+## Contact
 
 For support or queries, please contact us at nibirjoydhar@gmail.com
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - [PHPMailer](https://github.com/PHPMailer/PHPMailer)
 - [Bootstrap](https://getbootstrap.com)
